@@ -1,6 +1,6 @@
 #On ignore les fichiers texte et les binaires
 
-
+#:wq pour quitter VI
 *.txt
 bin/*
 *.out
