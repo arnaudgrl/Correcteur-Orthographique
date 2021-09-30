@@ -1,0 +1,5 @@
+#On ignore les fichiers texte et les binaires
+
+
+*.txt
+bin/*
