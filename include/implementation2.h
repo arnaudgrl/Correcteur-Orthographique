@@ -3,13 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define ALPHABET 26
 
 
 typedef struct noeud{
-  char c;
+  char lettre;
   struct noeud* alp[ALPHABET];//Chaque lettre possède 26 fils(1 fils par lettre possible)
-}node_t,*arbresuffixe;
+}noeud_t,*arbreprefixe_t;
 
 
 

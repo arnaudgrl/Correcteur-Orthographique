@@ -23,11 +23,22 @@ void decoupe_mot(char * lec){
     mot=strtok(NULL, ": ,.");
   }
 }
-
+void lecture_fichier(char* src, char * lec){
+  FILE * texte;
+  texte=fopen(src,"r");
+  if(texte==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(lec,1000,texte)!=NULL){
+        printf("%s\n",lec);
+      }
+    }
+  }
 int main(){
-  char lec[30];
-  lecture_ligne("a_la_recherche_du_temps_perdu.txt",lec);
-  printf("%s\n",lec);
+  char lec[1000];
+  lecture_fichier("a_la_recherche_du_temps_perdu.txt",lec);
+  //printf("%s\n",lec);
   decoupe_mot(lec);
   return EXIT_SUCCESS;
 }
