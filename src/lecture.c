@@ -35,10 +35,17 @@ void lecture_fichier(char* src, char * lec){
       }
     }
   }
-int main(){
-  char lec[1000];
-  lecture_fichier("a_la_recherche_du_temps_perdu.txt",lec);
-  //printf("%s\n",lec);
-  decoupe_mot(lec);
-  return EXIT_SUCCESS;
+
+void construct_dico(char * dico,arbreprefixe_t* a){
+  char * mot;
+  FILE * dictio;
+  dictio=fopen(dico,"r");
+  if(dictio==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(mot,100,dictio)!=NULL){
+      inserer_phrase(a,mot);
+    }
+  }
 }

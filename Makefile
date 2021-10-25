@@ -1,7 +1,7 @@
 # Compilateur
 CC=gcc
 # Options de compilation
-CFLAGS=-std=c99 -Wall -Wextra -lm -g -pg
+CFLAGS=-std=c99 -Wall -Wextra -lm -g
 
 # DÃ©finition des rÃ©pertoires de travail
 SRC_DIR=src
@@ -10,7 +10,7 @@ INC_DIR=include
 INC=-I$(INC_DIR)
 
 # DÃ©finition des fichiers source ne contenant pas de main
-AUX_SRC_FILES=""
+AUX_SRC_FILES="lecture.c" "arbreprefixe.c"
 
 # Identification des fichiers source dans le rÃ©pertoire SRC_DIR
 SRC_FILES=$(wildcard $(SRC_DIR)/*.c)
