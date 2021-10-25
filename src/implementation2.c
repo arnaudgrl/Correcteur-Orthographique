@@ -57,7 +57,17 @@ void inserer_phrase(arbreprefixe_t* a, char* mot){
     p=p->alp[indice];
   }
 }
+void arbre_delete(arbreprefixe_t a){
+  if(a!=NULL){
+    for(int i=0;i<26;i++){
+      arbre_delete(a->alp[i]);
+    }
+  destruct_noeud(a);
+  }
+}
+int recherche(arbreprefixe_t* a, char* mot){
 
+}
 int main(){
   arbreprefixe_t a=creer_arbre();
   //a->alp[1]=creer_noeud('b');
@@ -69,6 +79,7 @@ int main(){
 //  parcours_infixe(a,0,1);
   printf("%d\n",'b'-'a');
   printf("%c %c %c %c %c \n",a->alp[1]->lettre,a->alp[1]->alp[14]->lettre,a->alp[1]->alp[14]->alp[13]->lettre,a->alp[1]->alp[14]->alp[13]->alp[9]->lettre,a->alp[1]->alp[14]->alp[13]->alp[9]->alp[14]->lettre);
+  arbre_delete(a);
   return EXIT_SUCCESS;
 }
 //Construire une table de hachage qui contient les suffixes déja obtenus(penser au free qui decremente juste le dernier un compteur)
