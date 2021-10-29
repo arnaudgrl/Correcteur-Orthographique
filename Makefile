@@ -6,28 +6,29 @@ CFLAGS=-std=c99 -Wall -Wextra -lm -g
 # DÃ©finition des rÃ©pertoires de travail
 SRC_DIR=src
 BIN_DIR=bin
-INC_DIR=include
-INC=-I$(INC_DIR)
+OBJ_DIR=obj
+INC_DIR=./include
 
-# DÃ©finition des fichiers source ne contenant pas de main
-AUX_SRC_FILES="lecture.c" "arbreprefixe.c"
 
-# Identification des fichiers source dans le rÃ©pertoire SRC_DIR
-SRC_FILES=$(wildcard $(SRC_DIR)/*.c)
-# Filtrage des fichiers source ne contenant pas de main
-SRC_FILES := $(filter-out $(AUX_SRC_FILES), $(SRC_FILES))
+CFLAGS=-std=c99 -Wall -Wextra -lm -g -I$(INC_DIR)
 # GÃ©nÃ©ration de la liste des exÃ©cutables
-BIN_FILES=$(patsubst $(SRC_DIR)/%.c, $(BIN_DIR)/%, $(SRC_FILES))
+EXE_DIR= $(BIN_DIR)/implementation2
 
-# RÃ¨gle par dÃ©faut (make)
-all: $(BIN_FILES)
+OBJ_FILES= $(OBJ_DIR)/arbreprefixe.o $(OBJ_DIR)/lecture.o $(OBJ_DIR)/implementation2.o
 
-# RÃ¨gle gÃ©nÃ©rique
-$(BIN_DIR)/%: $(SRC_DIR)/%.c | $(BIN_DIR)
-	$(CC) $^ $(CFLAGS) $(INC) -o $@
 
-$(BIN_DIR):
-	mkdir $@
+
+all: $(EXE_DIR)
+
+$(BIN_DIR)/implementation2 : $(OBJ_FILES) $(OBJ_DIR)/implementation2.o
+		$(CC) -o $@ $^
+
+
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+			$(CC) $(CFLAGS) $^ -o $@
+
+
 
 clean:
 	rm -rf $(BIN_DIR)

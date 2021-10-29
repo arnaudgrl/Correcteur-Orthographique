@@ -1,5 +1,5 @@
 #include "lecture.h"
-
+#include "arbreprefixe.h"
 
 
 void lecture_ligne(char* src,char* lec){

@@ -6,5 +6,5 @@
 #include <assert.h>
 #include "arbreprefixe.h"
 #include "lecture.h"
-
+#include <assert.h>
 #endif

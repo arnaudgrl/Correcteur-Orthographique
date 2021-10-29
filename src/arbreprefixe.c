@@ -110,6 +110,9 @@ int recherche_mot(arbreprefixe_t a, char* mot){
   return 1;
 }
 
+int main(){
+  return EXIT_SUCCESS;
+}
 
 
 //Construire une table de hachage qui contient les suffixes déja obtenus(penser au free qui decremente juste le dernier un compteur)
