@@ -37,15 +37,38 @@ void lecture_fichier(char* src, char * lec){
   }
 
 void construct_dico(char * dico,arbreprefixe_t* a){
-  char * mot;
+  int i=0;
+  char mot[100];
   FILE * dictio;
   dictio=fopen(dico,"r");
   if(dictio==NULL){
     perror("Error opening file \n");
   }
   else{
-    while(fgets(mot,100,dictio)!=NULL){
+    while(fgets(mot,100,dictio)!=NULL && i<30000){
       inserer_phrase(a,mot);
+      i++;
+    }
+  }
+
+}
+
+void verif_ortho(arbreprefixe_t dico,char * texte){
+  char phrase[300];
+  char* mot;
+  FILE * tex = fopen(texte,"r");
+  if(tex==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(phrase,300,tex)!=NULL){
+      mot=strtok(phrase," : ,.");
+      while(mot!=NULL){
+        if(recherche_mot(dico,mot)==0){
+          printf("Mal ecrit : %s\n",mot);
+        }
+        mot=strtok(NULL, ": ,.");
+      }
     }
   }
 }

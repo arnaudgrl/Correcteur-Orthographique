@@ -1,4 +1,4 @@
-#include "implementation2.h"
+#include "arbreprefixe.h"
 
 
 
@@ -73,6 +73,7 @@ void inserer_lettre(arbreprefixe_t* a, char c){
 void inserer_phrase(arbreprefixe_t* a, char* mot){
   arbreprefixe_t p=*a;
   int indice;
+  //printf("%s\n",mot);
   for(int i=0;mot[i]!='\0';i++){
     indice=indice_caractere(mot[i]);
     inserer_lettre(&p,mot[i]);
@@ -110,9 +111,7 @@ int recherche_mot(arbreprefixe_t a, char* mot){
   return 1;
 }
 
-int main(){
-  return EXIT_SUCCESS;
-}
+
 
 
 //Construire une table de hachage qui contient les suffixes déja obtenus(penser au free qui decremente juste le dernier un compteur)
