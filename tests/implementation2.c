@@ -18,5 +18,7 @@ int main(int argc, char **argv){
   construct_dico(dico,&a);
   //verif_ortho(a,texte);
   arbre_delete(a);
+  free(dico);
+  free(texte);
   return EXIT_SUCCESS;
 }

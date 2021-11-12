@@ -50,7 +50,7 @@ void construct_dico(char * dico,arbreprefixe_t* a){
       i++;
     }
   }
-
+  free(dictio);
 }
 
 void verif_ortho(arbreprefixe_t dico,char * texte){
@@ -62,7 +62,7 @@ void verif_ortho(arbreprefixe_t dico,char * texte){
   }
   else{
     while(fgets(phrase,300,tex)!=NULL){
-      mot=strtok(phrase," : ,.");
+      mot=strtok(phrase," : ,. ' ");
       while(mot!=NULL){
         if(recherche_mot(dico,mot)==0){
           printf("Mal ecrit : %s\n",mot);

@@ -63,6 +63,7 @@ int indice_caractere(char c){
 
 
 void inserer_lettre(arbreprefixe_t* a, char c){
+  assert(a!=NULL);
   int indice =indice_caractere(c);
   if((*a)->alp[indice]==NULL){
   (*a)->alp[indice]=creer_noeud(c);
