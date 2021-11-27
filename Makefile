@@ -27,12 +27,12 @@ CFLAGS=-c -g   -I$(INCDIR)
 LDFLAGS=
 
 #Les executables que l'on veut construire: a la fois ceux des tests et ceux des programmes finaux
-EXEDIR= $(BINDIR)/implementation2 $(BINDIR)/testsarbreprefixe
+EXEDIR= $(BINDIR)/implementation2 $(BINDIR)/testsarbreprefixe $(BINDIR)/testimplementation1
 
 
 
 #Les fichiers binaire : ajouter les noms des nouveaux fichiers ici
-OBJ= $(OBJDIR)/lecture.o $(OBJDIR)/arbreprefixe.o
+OBJ= $(OBJDIR)/lecture.o $(OBJDIR)/arbreprefixe.o $(OBJDIR)/implementation1.o
 
 #Pour construire tous les executables
 all: $(EXEDIR)
@@ -46,6 +46,10 @@ $(BINDIR)/implementation2 : $(OBJ) $(OBJDIR)/implementation2.o
 #pour construire le test lecturetest qui utilise lecture.o
 $(BINDIR)/testsarbreprefixe : $(OBJ) $(OBJDIR)/testsarbreprefixe.o
 	$(CC) -o $@ $^ $(LDFLAGS)
+#pour construire le test testimplementation1 qui utilise implementation1.o
+$(BINDIR)/testimplementation1 : $(OBJ) $(OBJDIR)/testimplementation1.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
 # poru construire les fichiers binaires .o
 $(OBJDIR)/%.o : $(TESTS)/%.c
 	$(CC) $(CFLAGS) $^ -o $@

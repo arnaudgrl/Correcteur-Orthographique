@@ -1,5 +1,6 @@
 #include "lecture.h"
 #include "arbreprefixe.h"
+#include "implementation1.h"
 
 
 void lecture_ligne(char* src,char* lec){
@@ -36,7 +37,7 @@ void lecture_fichier(char* src, char * lec){
     }
   }
 
-void construct_dico(char * dico,arbreprefixe_t* a){
+void construct_dico(char * dico, arbreprefixe_t* a){
   int i=0;
   char mot[100];
   FILE * dictio;
@@ -71,4 +72,22 @@ void verif_ortho(arbreprefixe_t dico,char * texte){
       }
     }
   }
+}
+
+
+void construct_dico_implementation1(char * dico, table_hachage* a){
+  int i=0;
+  char mot[100];
+  FILE * dictio;
+  dictio=fopen(dico,"r");
+  if(dictio==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(mot,100,dictio)!=NULL && i<30000){
+      inserer_sans_redimensionner(*mot,a);
+      i++;
+    }
+  }
+  free(dictio);
 }
