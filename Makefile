@@ -50,7 +50,7 @@ $(BINDIR)/testsarbreprefixe : $(OBJ) $(OBJDIR)/testsarbreprefixe.o
 $(BINDIR)/testimplementation1 : $(OBJ) $(OBJDIR)/testimplementation1.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-# poru construire les fichiers binaires .o
+# pour construire les fichiers binaires .o
 $(OBJDIR)/%.o : $(TESTS)/%.c
 	$(CC) $(CFLAGS) $^ -o $@
 
