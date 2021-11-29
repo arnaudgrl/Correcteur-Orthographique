@@ -10,46 +10,55 @@ hash est la longueur du mot fois l'indice de sa première lettre.
 ================================================================
 */
 
-unsigned int hash1(char* mot){
-  return (unsigned int)strlen(mot)*(mot[0]);
+void element_print(T element){
+  printf("%s",element.mot);
 }
 
-bool identiques(char* mot1, char* mot2){
-  return (strcmp(mot1,mot2));
-}
-
-bool est_present_1(char* mot, table_hachage* ht){
-  int h = (hash1(mot))%(ht->capacite);
-  while(ht->table[h]!=NULL){
-    if(identiques(mot,ht->table[h]->mot)){
-      return true;
-    }
-    ht->table[h] = ht->table[h]->next;
-  }
-  return false;
-}
-
-void inserer(char* mot, liste* pl){
-  liste l = malloc(sizeof(liste));            /* allocation de la cellule */
-  if(NULL==l){
+void insere_tete(T element, liste* pl){
+  liste p=calloc(1,sizeof(*p));
+  if(NULL==p){
     fprintf(stderr,"Fatal : Unable to allocate new list link.\n");
   }
-  l->mot = mot;
-  l->next = *pl;
-  *pl = l;
+  p->element=element;
+  p->suivante = *pl;
+  *pl=p;
 }
-
 void list_print(liste l){
   if(l!=NULL){
     printf("(");
-    for(liste p=l;p!=NULL;p=p->next){
+    int i = 0;
+    for(liste p=l;p!=NULL;p=p->suivante){
+      printf(" %d", i);
       printf(" ");
-      printf("%s",l->mot);
+      element_print(l->element);
+      i++;
     }
     printf(")");
     printf(",");
   }
 }
+
+int hash(T element, int taille){
+  return (int)(strlen(element.mot))%taille;
+}
+
+int identiques(T element_1,T element_2){
+  return (strcmp(element_1.mot,element_2.mot)==0);
+}
+
+int est_present(T element, table_hachage* ht){
+  //printf("%d\n",ht->capacite);
+  int hashcode=hash(element,ht->capacite);
+  liste p=ht->table[hashcode];
+  while(p!=NULL){
+    if(identiques(element,p->element)){
+      return 1;
+    }
+    p=p->suivante;
+  }
+  return 0;
+}
+
 table_hachage hashtable_new(int taille){
   table_hachage tab;
   tab.table=calloc(taille,sizeof(*tab.table));
@@ -62,14 +71,12 @@ table_hachage hashtable_new(int taille){
   }
   return tab;
 }
-
-
 table_hachage redimensionner(table_hachage ht){
-  if(3*ht.nb_elements > 2*ht.capacite){
+  if(3*ht.nb_elements>2*ht.capacite){
     table_hachage nouv=hashtable_new(2*ht.capacite);
     for(unsigned int i=0;i<ht.capacite;i++){
-      for(liste p=ht.table[i];p!=NULL;p=p->next){
-        inserer_sans_redimensionner(p->mot,&nouv);
+      for(liste p=ht.table[i];p!=NULL;p=p->suivante){
+        inserer_sans_redimensionner(p->element,&nouv);
       }
     }
     free(ht.table);
@@ -79,13 +86,12 @@ table_hachage redimensionner(table_hachage ht){
     return ht;
   }
 }
-
-void inserer_sans_redimensionner(char* mot, table_hachage* ht){
-  if(est_present_1(mot,ht)){
-    printf("Mot déja présent dans la liste\n");
+void inserer_sans_redimensionner(T element, table_hachage* ht){
+  if(est_present(element,ht)){
+    printf("L'element %s déja présent dans la liste\n", element.mot);
   }
   else{
-    inserer(mot,&ht->table[hash1(mot)]);
+    insere_tete(element,&ht->table[hash(element,ht->capacite)]);
     ht->nb_elements++;
     *ht=redimensionner(*ht);
   }
@@ -98,3 +104,36 @@ void hashtable_print(table_hachage ht){
   }
   printf(")\n");
 }
+
+
+//
+// int main(){
+//   T a,b,c,d,e;
+//   a.mot = "chapeau";
+//   b.mot = "masque";
+//   c.mot = "manger";
+//   e.mot = "marche";
+//   d.mot = "ah";
+//   printf("%d\n",hash(a,10));
+//   //printf("%d\n",identiques(a,b));
+//   table_hachage ht = hashtable_new(3);
+//   printf("%d\n",ht.capacite);
+//   inserer_sans_redimensionner(a,&ht); //chapeau
+//   //printf("%d\n",est_present(a,&ht));
+//   hashtable_print(ht);
+//   printf("\n");
+//   inserer_sans_redimensionner(b,&ht); // masque
+//   //printf("%d\n",ht.capacite);
+//   inserer_sans_redimensionner(c,&ht); // manger
+//   inserer_sans_redimensionner(d,&ht); // ah
+//   inserer_sans_redimensionner(a,&ht); // chapeau
+//   inserer_sans_redimensionner(e,&ht); // marche
+//   inserer_sans_redimensionner(e,&ht); // marche
+//   inserer_sans_redimensionner(b,&ht); // masque
+//   inserer_sans_redimensionner(c,&ht); // manger
+//
+//     printf("\n");
+//   hashtable_print(ht);
+//   printf("%d\n",ht.capacite);
+//   return EXIT_SUCCESS;
+// }
