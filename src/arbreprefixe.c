@@ -6,8 +6,15 @@
 
 noeud_t* creer_noeud(char c){
   noeud_t*p=calloc(1,sizeof(*p));
+  if(p==NULL){
+    printf("%c\n",c);
+    printf("Erreur d'allocation");
+  }
   char s = tolower(c);
   p->lettre=s;
+  for(int i=0;i<ALPHABET;i++){
+    p->alp[i]=NULL;
+  }
   return p;
 }
 
@@ -23,7 +30,7 @@ arbreprefixe_t creer_arbre(){
   return p;
 }
 
-int arbre_est_vide(arbreprefixe_t a){
+int arbreprefixe_est_vide(arbreprefixe_t a){
   return a==NULL;
 }
 
@@ -39,7 +46,7 @@ void arbre_delete(arbreprefixe_t a){
 
 
 void parcours_infixe(arbreprefixe_t a,int espace,int n){
-  if(!arbre_est_vide(a)){
+  if(!arbreprefixe_est_vide(a)){
     for(int i=0;i<13;i++){
       espace+=n;
       parcours_infixe(a->alp[i],espace,n);
@@ -65,8 +72,15 @@ int indice_caractere(char c){
 void inserer_lettre(arbreprefixe_t* a, char c){
   assert(a!=NULL);
   int indice =indice_caractere(c);
+  if((char*)&(*a)->alp[indice]==(char*)(0x5647fd0)){
+    printf("%c\n",c);
+  }
   if((*a)->alp[indice]==NULL){
-  (*a)->alp[indice]=creer_noeud(c);
+    (*a)->alp[indice]=creer_noeud(c);
+  }
+  else{
+    //printf("%c\n",c);
+    return ;
   }
 }
 
@@ -74,7 +88,6 @@ void inserer_lettre(arbreprefixe_t* a, char c){
 void inserer_phrase(arbreprefixe_t* a, char* mot){
   arbreprefixe_t p=*a;
   int indice;
-  //printf("%s\n",mot);
   for(int i=0;mot[i]!='\0';i++){
     indice=indice_caractere(mot[i]);
     inserer_lettre(&p,mot[i]);

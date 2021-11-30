@@ -89,5 +89,5 @@ void construct_dico_implementation1(char * dico, table_hachage* a){
       i++;
     }
   }
-  free(dictio);
+  fclose(dictio);
 }

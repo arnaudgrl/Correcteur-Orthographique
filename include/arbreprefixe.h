@@ -9,6 +9,7 @@
 #define ALPHABET 26
 
 
+
 typedef struct noeud{
   char lettre;
   struct noeud* alp[ALPHABET];//Chaque lettre possède 26 fils(1 fils par lettre possible)
@@ -20,7 +21,7 @@ void destruct_noeud(noeud_t* p);
 
 
 arbreprefixe_t creer_arbre();
-int arbre_est_vide(arbreprefixe_t a);
+int arbreprefixe_est_vide(arbreprefixe_t a);
 void parcours_infixe(arbreprefixe_t a,int espace,int n);
 void arbre_delete(arbreprefixe_t a);
 
