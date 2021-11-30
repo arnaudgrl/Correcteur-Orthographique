@@ -50,7 +50,7 @@ void construct_dico(char * dico,arbreprefixe_t* a){
       i++;
     }
   }
-  free(dictio);
+  fclose(dictio);
 }
 
 void verif_ortho(arbreprefixe_t dico,char * texte){
