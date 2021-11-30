@@ -1,18 +1,20 @@
+#ifndef IMPLEMENTATION1_H
+#define IMPLEMENTATION1_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 typedef struct coordonnee {
-  char mot;
+  char* mot;
 } T;
-
 
 typedef struct _cellule {
   T element;
   struct _cellule* suivante;
 } cellule;
 typedef cellule* liste;
-
 
 typedef struct {
   liste* table;
@@ -23,12 +25,26 @@ typedef struct {
 
 
 
+
 //Fonctions
 
-flaot hash1(T element);
+void element_print(T element);
 
-bool identiques(T element_1, T element_2);
+void insere_tete(T element, liste* pl);
 
-bool est_present_1(T element, table_hachage* ht);
+void list_print(liste l);
 
-void inserer(T element , table_hachage* ht);
+int hash(T element, int taille);
+
+int est_present(T element, table_hachage* ht);
+
+table_hachage hashtable_new(int taille);
+
+void inserer_sans_redimensionner(T element, table_hachage* ht);
+
+table_hachage redimensionner(table_hachage ht);
+
+void hashtable_print(table_hachage ht);
+
+
+#endif //IMPLEMENTATION1_H
