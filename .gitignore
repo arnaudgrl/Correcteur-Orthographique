@@ -3,5 +3,4 @@
 #:wq pour quitter VI
 *.txt
 bin/*
-*.out
 obj/*

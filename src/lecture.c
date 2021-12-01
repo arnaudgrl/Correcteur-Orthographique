@@ -51,7 +51,7 @@ void construct_dico(char * dico, arbreprefixe_t* a){
       i++;
     }
   }
-  free(dictio);
+  fclose(dictio);
 }
 
 void verif_ortho(arbreprefixe_t dico,char * texte){
@@ -91,5 +91,5 @@ void construct_dico_implementation1(char * dico, table_hachage* a){
       i++;
     }
   }
-  free(dictio);
+  fclose(dictio);
 }
