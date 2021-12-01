@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "string.h"
 
 typedef struct radix {
   char* rad;//Contient la chaine de caractere a comparer
