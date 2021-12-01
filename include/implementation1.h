@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-typedef struct coordonnee {
+typedef struct element {
   char* mot;
 } T;
 

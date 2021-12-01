@@ -85,7 +85,9 @@ void construct_dico_implementation1(char * dico, table_hachage* a){
   }
   else{
     while(fgets(mot,100,dictio)!=NULL && i<30000){
-      inserer_sans_redimensionner(*mot,a);
+      T element;
+      element.mot = mot;
+      inserer_sans_redimensionner(element,a);
       i++;
     }
   }
