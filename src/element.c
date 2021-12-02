@@ -11,5 +11,5 @@ int est_un_mot(element x){
   return x->estunmot;
 }
 int compare_element(element chaine1,element chaine2){
-  return strcmp(chaine1->rad,chaine2->rad);
+  return strcmp(chaine1->rad,chaine2->rad)==0;
 }

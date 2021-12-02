@@ -65,27 +65,28 @@ void parcours_infixe(arbreprefixe_t a,int espace,int n){
 
 int indice_caractere(char c){
   char s =tolower(c);
-  return (int)(s-'a');
+  int res=(int)s-'a';
+  if(res>26){
+    printf("%c\n",c);
+  }
+  return res;
 }
 
 
 void inserer_lettre(arbreprefixe_t* a, char c){
   assert(a!=NULL);
   int indice =indice_caractere(c);
-  if((char*)&(*a)->alp[indice]==(char*)(0x5647fd0)){
+  if(indice>26){
     printf("%c\n",c);
   }
+  assert(0<=indice && indice<26);
   if((*a)->alp[indice]==NULL){
     (*a)->alp[indice]=creer_noeud(c);
-  }
-  else{
-    //printf("%c\n",c);
-    return ;
   }
 }
 
 
-void inserer_phrase(arbreprefixe_t* a, char* mot){
+void inserer_mot(arbreprefixe_t* a, char* mot){
   arbreprefixe_t p=*a;
   int indice;
   for(int i=0;mot[i]!='\0';i++){
@@ -93,6 +94,7 @@ void inserer_phrase(arbreprefixe_t* a, char* mot){
     inserer_lettre(&p,mot[i]);
     p=p->alp[indice];
   }
+  p->estunmot=1;
 }
 
 
@@ -122,7 +124,12 @@ int recherche_mot(arbreprefixe_t a, char* mot){
     p=p->alp[indice];
     i++;
   }
-  return 1;
+  if(p->estunmot==1){
+    return 1;
+  }
+  else{
+    return 0;
+  }
 }
 
 

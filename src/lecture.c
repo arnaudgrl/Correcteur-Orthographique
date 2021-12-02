@@ -1,6 +1,6 @@
 #include "lecture.h"
 #include "arbreprefixe.h"
-#include "implementation1.h"
+
 
 
 void lecture_ligne(char* src,char* lec){
@@ -36,18 +36,32 @@ void lecture_fichier(char* src, char * lec){
       }
     }
   }
-
+char *remove_white_spaces(char *str){
+  int i = 0, j = 0;
+  while (str[i]){
+    if (str[i] != ' ' ){
+      str[j++] = str[i];}
+    i++;
+  }
+  str[j] = '\0';
+  return str;
+}
 void construct_dico(char * dico, arbreprefixe_t* a){
   int i=0;
-  char mot[100];
+  char mot[30];
+  int len;
   FILE * dictio;
   dictio=fopen(dico,"r");
   if(dictio==NULL){
     perror("Error opening file \n");
   }
   else{
-    while(fgets(mot,100,dictio)!=NULL && i<30000){
-      inserer_phrase(a,mot);
+    while(fgets(mot,30,dictio)!=NULL){
+      len=strlen(mot);
+      if(mot[len-1]<32){
+        mot[len-1]=0;
+      }
+      inserer_mot(a,mot);
       i++;
     }
   }
@@ -63,7 +77,7 @@ void verif_ortho(arbreprefixe_t dico,char * texte){
   }
   else{
     while(fgets(phrase,300,tex)!=NULL){
-      mot=strtok(phrase," : ,. ' ");
+      mot=strtok(phrase," : ,. ' \"");
       while(mot!=NULL){
         if(recherche_mot(dico,mot)==0){
           printf("Mal ecrit : %s\n",mot);
@@ -85,7 +99,9 @@ void construct_dico_implementation1(char * dico, table_hachage* a){
   }
   else{
     while(fgets(mot,100,dictio)!=NULL && i<30000){
-      inserer_sans_redimensionner(*mot,a);
+      T element;
+      element.mot = mot;
+      inserer_sans_redimensionner(element,a);
       i++;
     }
   }

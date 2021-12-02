@@ -21,18 +21,18 @@ SRCDIR=./src
 CC=gcc
 
 #Les options du compilateur : compilation (-c) et debug (-g). On peut ajouter -O3 pour optimiser quand le code est juste
-CFLAGS=-c -g   -I$(INCDIR)
+CFLAGS=-c -std=c99 -g   -I$(INCDIR)
 
 #Les options de l'editeur de liens : -lm pour la bibliothèque mathématique. Voir les Makefile de TP pour ajouter la SDL si besoin
 LDFLAGS=
 
 #Les executables que l'on veut construire: a la fois ceux des tests et ceux des programmes finaux
-EXEDIR= $(BINDIR)/implementation2 $(BINDIR)/testsarbreprefixe $(BINDIR)/testimplementation1
+EXEDIR= $(BINDIR)/implementation2 $(BINDIR)/testsarbreprefixe $(BINDIR)/testimplementation1 $(BINDIR)/testarbreradix
 
 
 
 #Les fichiers binaire : ajouter les noms des nouveaux fichiers ici
-OBJ= $(OBJDIR)/lecture.o $(OBJDIR)/arbreprefixe.o $(OBJDIR)/implementation1.o
+OBJ= $(OBJDIR)/lecture.o $(OBJDIR)/arbreprefixe.o $(OBJDIR)/implementation1.o $(OBJDIR)/arbreradix.o
 
 #Pour construire tous les executables
 all: $(EXEDIR)
@@ -49,7 +49,9 @@ $(BINDIR)/testsarbreprefixe : $(OBJ) $(OBJDIR)/testsarbreprefixe.o
 #pour construire le test testimplementation1 qui utilise implementation1.o
 $(BINDIR)/testimplementation1 : $(OBJ) $(OBJDIR)/testimplementation1.o
 	$(CC) -o $@ $^ $(LDFLAGS)
-
+#pour construire le test testimplementation1 qui utilise implementation1.o
+$(BINDIR)/testarbreradix : $(OBJ) $(OBJDIR)/testarbreradix.o
+	$(CC) -o $@ $^ $(LDFLAGS)
 # pour construire les fichiers binaires .o
 $(OBJDIR)/%.o : $(TESTS)/%.c
 	$(CC) $(CFLAGS) $^ -o $@

@@ -9,8 +9,11 @@
 #define ALPHABET 26
 
 typedef struct noeud{
-  char data;
+  char* data;
+  int estunmot;
   struct noeud* alp[ALPHABET];//Chaque lettre possède 26 fils(1 fils par lettre possible)
 }noeud_t,*arbreradix_t;
 
+
+int estprefixe(char* prefixe,char* mot);
 #endif

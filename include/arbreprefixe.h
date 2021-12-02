@@ -12,6 +12,7 @@
 
 typedef struct noeud{
   char lettre;
+  int estunmot;//Estunmot permet de savoir si au moment où l'on s'arrête on a un mot ou non
   struct noeud* alp[ALPHABET];//Chaque lettre possède 26 fils(1 fils par lettre possible)
 }noeud_t,*arbreprefixe_t;
 
@@ -27,7 +28,7 @@ void arbre_delete(arbreprefixe_t a);
 
 int indice_caractere(char c);
 void inserer_lettre(arbreprefixe_t* a, char c);
-void inserer_phrase(arbreprefixe_t* a, char* mot);
+void inserer_mot(arbreprefixe_t* a, char* mot);
 
 int recherche_lettre(arbreprefixe_t a, char lettre);
 int recherche_mot(arbreprefixe_t a, char* mot);
