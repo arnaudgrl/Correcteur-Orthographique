@@ -11,7 +11,7 @@ hash est la longueur du mot fois l'indice de sa première lettre.
 */
 
 void element_print(T element){
-  printf("%s",element.mot);
+  printf("Le mot est : %s",element.mot);
 }
 
 void insere_tete(T element, liste* pl){
@@ -28,10 +28,12 @@ void list_print(liste l){
   if(l!=NULL){
     printf("(");
     int i = 0;
-    for(liste p=l;p!=NULL;p=p->suivante){
+    liste p;
+    for(p=l;p!=NULL;p=p->suivante){
       printf(" %d", i);
       printf(" ");
-      element_print(p->element);
+      //element_print(p->element);
+      printf("%s", p->element.mot );
       i++;
     }
     printf(")");
@@ -40,11 +42,17 @@ void list_print(liste l){
 }
 
 int hash(T element, int taille){
-  return (int)(strlen(element.mot))%taille;
+  //printf("%d\n", strlen(element.mot) );
+  //printf("%d\n", taille );
+  return (strlen(element.mot))%taille;
 }
 
 int identiques(T element_1,T element_2){
-  return (strcmp(element_1.mot,element_2.mot)==0);
+  //printf("%s comparé à %s\n", element_1.mot, element_2.mot );
+  if (strcmp(element_1.mot,element_2.mot)==0) {
+    return 1;
+  }
+  return 0;
 }
 
 int est_present(T element, table_hachage* ht){
@@ -52,7 +60,8 @@ int est_present(T element, table_hachage* ht){
   int hashcode=hash(element,ht->capacite);
   liste p=ht->table[hashcode];
   while(p!=NULL){
-    if(identiques(element,p->element)){
+    //printf("%s comparé à %s\n", element.mot, p->element.mot );
+    if(identiques(element,p->element)==1){
       return 1;
     }
     p=p->suivante;
@@ -61,57 +70,74 @@ int est_present(T element, table_hachage* ht){
 }
 
 table_hachage hashtable_new(int taille){
-  table_hachage tab;
-  tab.table=calloc(taille,sizeof(*tab.table));
-  tab.capacite=taille;
-  tab.capacite_initiale=taille;
-  tab.nb_elements=0;
+  table_hachage ht;
+  ht.capacite=taille;
+  ht.table=calloc(ht.capacite,sizeof(*ht.table));
+  ht.capacite_initiale=taille;
+  ht.nb_elements=0;
   int i;
-  for(i=0;i<taille;i++){
-    tab.table[i]=NULL;
+  for(i=0;i<ht.capacite;i++){
+    ht.table[i]=NULL;
   }
-  return tab;
+  return ht;
 }
 
-table_hachage redimensionner(table_hachage ht){
-  if(3*ht.nb_elements>2*ht.capacite){
-    table_hachage nouv=hashtable_new(2*ht.capacite);
-    for(unsigned int i=0;i<ht.capacite;i++){
-      for(liste p=ht.table[i];p!=NULL;p=p->suivante){
-        inserer_sans_redimensionner(p->element.mot,&nouv);
+void redimensionner(T element, table_hachage* ht){
+  if(3*ht->nb_elements>2*ht->capacite){
+    // printf("%d\n",ht->capacite );
+    table_hachage nouv=hashtable_new(2*ht->capacite);
+    unsigned int i;
+    for(i=0;i<ht->capacite;i++){
+      liste p;
+      for( p=ht->table[i];p!=NULL;p=p->suivante){
+        inserer_sans_redimensionner(p->element,&nouv);
       }
     }
-    free(ht.table);
-    return nouv;
+    free_hashtable(ht);
+    *ht = nouv;
+  }
+  inserer_sans_redimensionner(element,ht);
+
+
+}
+void inserer_sans_redimensionner(T element, table_hachage* ht){
+  // T element;
+  // element.mot = mot;
+  element_print(element);
+  //printf("%s\n",element.mot );
+  if(est_present(element,ht)==1){
+    printf("L'element %s déja présent dans la liste\n", element.mot);
   }
   else{
-    return ht;
-  }
-}
-void inserer_sans_redimensionner(char* mot, table_hachage* ht){
-  T element;
-  element.mot = mot;
-  printf("%s\n", element.mot );
-  //printf("%s\n",element.mot );
-  // if(est_present(element,ht)==1){
-  //   printf("L'element %s déja présent dans la liste\n", element.mot);
-  // }
-  // else{
-
-    insere_tete(element,&ht->table[hash(element,ht->capacite)]);
-    // liste* l = &ht->table[hash(element,ht->capacite)];
-    // list_print(*l);
+    liste* p = &ht->table[hash(element,ht->capacite)];
+    insere_tete(element,p);
+    liste* l = &ht->table[hash(element,ht->capacite)];
+    //list_print(*l);
+    //hashtable_print(ht);
+    printf("\n");
     ht->nb_elements++;
-    *ht=redimensionner(*ht);
-  // }
+  }
 }
 
 void hashtable_print(table_hachage *ht){
-  printf("(");
-  for(unsigned int i=0;i<ht->capacite;i++){
+  printf("{\n");
+  unsigned int i;
+  for(i=0;i<ht->capacite;i++){
+    printf("(");
+    printf("%d :", i);
     list_print(ht->table[i]);
+    printf(")");
+    printf("\n");
   }
-  printf(")\n");
+  printf("}\n");
+}
+
+void free_hashtable(table_hachage* ht){
+  unsigned int i;
+  for ( i = 0; i < ht->capacite; i++) {
+    free(ht->table[i]);
+  }
+  free(ht->table);
 }
 
 //
@@ -141,7 +167,7 @@ void hashtable_print(table_hachage *ht){
 //   inserer_sans_redimensionner(c,&ht); // manger
 //
 //     printf("\n");
-//   hashtable_print(ht);
+// hashtable_print(ht);
 //   printf("%d\n",ht.capacite);
 //   return EXIT_SUCCESS;
 // }
