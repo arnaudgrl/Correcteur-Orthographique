@@ -32,7 +32,7 @@ EXEDIR= $(BINDIR)/implementation2 $(BINDIR)/testsarbreprefixe $(BINDIR)/testimpl
 
 
 #Les fichiers binaire : ajouter les noms des nouveaux fichiers ici
-OBJ= $(OBJDIR)/lecture.o $(OBJDIR)/arbreprefixe.o $(OBJDIR)/implementation1.o $(OBJDIR)/arbreradix.o
+OBJ= $(OBJDIR)/lecture.o $(OBJDIR)/arbreprefixe.o $(OBJDIR)/implementation1.o $(OBJDIR)/arbreradix.o $(OBJDIR)/arbreprefixe2.o
 
 #Pour construire tous les executables
 all: $(EXEDIR)

@@ -11,9 +11,13 @@
 typedef struct noeud{
   char* data;
   int estunmot;
-  struct noeud* alp[ALPHABET];//Chaque lettre possède 26 fils(1 fils par lettre possible)
+  int compteurfils;
+  struct noeud** prefixe;//Chaque lettre possède 26 fils(1 fils par lettre possible)
 }noeud_t,*arbreradix_t;
 
 
 int estprefixe(char* prefixe,char* mot);
+void inserer_motradix(arbreradix_t* radix,char* mot);
+void inserer_radix(arbreradix_t* radix,char* mot);
+
 #endif

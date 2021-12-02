@@ -5,10 +5,7 @@
 #include <string.h>
 #include "arbreprefixe.h"
 #include "implementation1.h"
-<<<<<<< HEAD
-=======
 
->>>>>>> 51b9fe8cb32eeea143428ac698b7d993ad83945a
 void decoupe_mot(char * lec);
 void lecture_ligne(char* src,char* lec);
 void construct_dico(char * dico,arbreprefixe_t* a);
