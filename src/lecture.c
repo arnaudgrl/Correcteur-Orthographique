@@ -84,11 +84,19 @@ void construct_dico_implementation1(char * dico, table_hachage* a){
     perror("Error opening file \n");
   }
   else{
-    while(fgets(mot,100,dictio)!=NULL && i<30000){
+    while(fgets(mot,100,dictio)!=NULL && i<13){
       T element;
-      element.mot = mot;
-      inserer_sans_redimensionner(element,a);
-      i++;
+      element.mot =mot;
+      if(est_present(element,a)==1){
+        printf("L'element %s déja présent dans la liste\n", element.mot);
+      }
+      else{
+        //printf("%s\n", mot );
+        inserer_sans_redimensionner(mot,a);
+        // hashtable_print(a);
+        // printf("\n\n\n" );
+        i++;
+      }
     }
   }
   fclose(dictio);

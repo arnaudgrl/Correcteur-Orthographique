@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <stdbool.>
+#include <stdbool.h>
 
 
 struct cellule {
@@ -14,7 +14,7 @@ struct cellule {
 };
 typedef struct cellule* liste;
 
-void insere_tete(char* nouveau_mot, liste* pl);
+void insere_tete_liste(char* nouveau_mot, liste* pl);
 bool recherche_liste(int valeur, liste l);
 
 #endif

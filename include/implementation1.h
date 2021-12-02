@@ -40,11 +40,11 @@ int est_present(T element, table_hachage* ht);
 
 table_hachage hashtable_new(int taille);
 
-void inserer_sans_redimensionner(T element, table_hachage* ht);
+void inserer_sans_redimensionner(char* mot, table_hachage* ht);
 
 table_hachage redimensionner(table_hachage ht);
 
-void hashtable_print(table_hachage ht);
+void hashtable_print(table_hachage* ht);
 
 
 #endif //IMPLEMENTATION1_H

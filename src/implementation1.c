@@ -15,6 +15,7 @@ void element_print(T element){
 }
 
 void insere_tete(T element, liste* pl){
+  //printf("%s\n",element.mot );
   liste p=calloc(1,sizeof(*p));
   if(NULL==p){
     fprintf(stderr,"Fatal : Unable to allocate new list link.\n");
@@ -30,7 +31,7 @@ void list_print(liste l){
     for(liste p=l;p!=NULL;p=p->suivante){
       printf(" %d", i);
       printf(" ");
-      element_print(l->element);
+      element_print(p->element);
       i++;
     }
     printf(")");
@@ -71,12 +72,13 @@ table_hachage hashtable_new(int taille){
   }
   return tab;
 }
+
 table_hachage redimensionner(table_hachage ht){
   if(3*ht.nb_elements>2*ht.capacite){
     table_hachage nouv=hashtable_new(2*ht.capacite);
     for(unsigned int i=0;i<ht.capacite;i++){
       for(liste p=ht.table[i];p!=NULL;p=p->suivante){
-        inserer_sans_redimensionner(p->element,&nouv);
+        inserer_sans_redimensionner(p->element.mot,&nouv);
       }
     }
     free(ht.table);
@@ -86,25 +88,31 @@ table_hachage redimensionner(table_hachage ht){
     return ht;
   }
 }
-void inserer_sans_redimensionner(T element, table_hachage* ht){
-  if(est_present(element,ht)){
-    printf("L'element %s déja présent dans la liste\n", element.mot);
-  }
-  else{
+void inserer_sans_redimensionner(char* mot, table_hachage* ht){
+  T element;
+  element.mot = mot;
+  printf("%s\n", element.mot );
+  //printf("%s\n",element.mot );
+  // if(est_present(element,ht)==1){
+  //   printf("L'element %s déja présent dans la liste\n", element.mot);
+  // }
+  // else{
+
     insere_tete(element,&ht->table[hash(element,ht->capacite)]);
+    // liste* l = &ht->table[hash(element,ht->capacite)];
+    // list_print(*l);
     ht->nb_elements++;
     *ht=redimensionner(*ht);
-  }
+  // }
 }
 
-void hashtable_print(table_hachage ht){
+void hashtable_print(table_hachage *ht){
   printf("(");
-  for(unsigned int i=0;i<ht.capacite;i++){
-    list_print(ht.table[i]);
+  for(unsigned int i=0;i<ht->capacite;i++){
+    list_print(ht->table[i]);
   }
   printf(")\n");
 }
-
 
 //
 // int main(){
