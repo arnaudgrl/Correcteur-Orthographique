@@ -34,17 +34,20 @@ void insere_tete(T element, liste* pl);
 
 void list_print(liste l);
 
+int identiques(T element_1,T element_2);
+
 int hash(T element, int taille);
 
 int est_present(T element, table_hachage* ht);
 
 table_hachage hashtable_new(int taille);
 
-void inserer_sans_redimensionner(char* mot, table_hachage* ht);
+void inserer_sans_redimensionner(T element, table_hachage* ht);
 
-table_hachage redimensionner(table_hachage ht);
+void redimensionner(T element, table_hachage* ht);
 
 void hashtable_print(table_hachage* ht);
 
+void free_hashtable(table_hachage* ht);
 
 #endif //IMPLEMENTATION1_H
