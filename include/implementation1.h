@@ -18,9 +18,9 @@ typedef cellule* liste;
 
 typedef struct {
   liste* table;
-  unsigned capacite; /* capacité de la table */
-  unsigned nb_elements; /* nombres d'éléments dans la table */
-  unsigned capacite_initiale; /* utile lors du redimensionnement */
+  unsigned int capacite; /* capacité de la table */
+  unsigned int nb_elements; /* nombres d'éléments dans la table */
+  unsigned int capacite_initiale; /* utile lors du redimensionnement */
 } table_hachage;
 
 
@@ -40,7 +40,7 @@ int hash(T element, int taille);
 
 int est_present(T element, table_hachage* ht);
 
-table_hachage hashtable_new(int taille);
+table_hachage hashtable_new(unsigned int taille, unsigned int taille_initiale);
 
 void inserer_sans_redimensionner(T element, table_hachage* ht);
 
