@@ -1,9 +1,10 @@
-#include "arbreprefixe2.h"
+#include "arbreradix.h"
 
 
 int main(){
+  char radix[7] = "BONJOUR";
   printf("%d\n",estprefixe("mot","motisma"));
-  noeud_t* a = creer_noeud("BONJOUR");
-  printf("%s\n",a->compteurfils);
+  noeud_radix_t* a = creer_noeud_radix(radix);
+  printf("%s\n",a->radix);
   return EXIT_SUCCESS;
 }
