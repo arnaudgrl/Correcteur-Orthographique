@@ -8,7 +8,7 @@
 
 
 int main(int argc, char **argv){
-  char * dico;
+  /*char * dico;
   char* texte;
   dico = "FR.txt";
   texte = "a_la_recherche_du_temps_perdu.txt";
@@ -39,6 +39,6 @@ int main(int argc, char **argv){
   hashtable_print(b);
   //arbre_delete(a);
   //free(dico);
-  //free(texte);
+  //free(texte);*/
   return EXIT_SUCCESS;
 }

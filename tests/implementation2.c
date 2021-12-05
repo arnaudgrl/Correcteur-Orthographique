@@ -16,7 +16,7 @@ int main(int argc, char **argv){
   arbreprefixe_t a = creer_arbre();
   printf("%s %s\n",dico,texte);
   construct_dico(dico,&a);
-  //verif_ortho(a,texte);
+  verif_ortho(a,texte);
   arbre_delete(a);
   //free(dico);
   //free(texte);

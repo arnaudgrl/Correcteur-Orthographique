@@ -7,7 +7,7 @@ int main(){
   inserer_mot(&a,"Oskour ");
   printf("%d\n",recherche_mot(a,"Salut"));
   printf("%d\n",recherche_mot(a,"Oskour"));
-  printf("%d\n",recherche_mot(a,"Osko azertyuiopqsdfghjklmwxcvbn,;:!?./§ "));
+  printf("%d\n",recherche_mot(a,"Osko"));
   //parcours_infixe(a,1,1);
   arbre_delete(a);
   return EXIT_SUCCESS;
