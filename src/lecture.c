@@ -129,29 +129,45 @@ void verif_ortho_radix(arbreradix_t dico,char * texte){
 }
 
 
-
-table_hachage construct_dico_implementation1(char * dico){
-  int i=0;
+void construct_dico_implementation1(char * dico, table_hachage* a){
   char mot[100];
   FILE * dictio;
-  table_hachage a = hashtable_new(10);
   dictio=fopen(dico,"r");
   if(dictio==NULL){
     perror("Error opening file \n");
   }
   else{
-    while(fgets(mot,100,dictio)!=NULL && i<13){
+    while(fgets(mot,100,dictio)!=NULL){
       //printf("%s\n", mot );
 
       T element;
       element.mot = strdup(mot);
       //printf("adresse : %d\n", &element);
-      redimensionner(element,&a);
+      redimensionner(element,a);
     }
-    fclose(dictio);
-    return a;
   }
 
   fclose(dictio);
-  return a;
 }
+
+void verif_ortho_hachage(table_hachage dico,char * texte){
+  char phrase[300];
+  char* mot;
+  T element;
+  FILE * tex = fopen(texte,"r");
+  if(tex==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(phrase,300,tex)!=NULL){
+      mot=strtok(phrase," : ,. ' \"");
+      while(mot!=NULL){
+        element.mot = strdup(mot);
+        //printf("%s\n", mot );
+        if(est_present(element, &dico)==0){
+          printf("Mal ecrit : %s\n",mot);
+        }
+        mot=strtok(NULL, ": ,.");
+      }
+    }
+  }
