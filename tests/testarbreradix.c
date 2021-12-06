@@ -2,12 +2,10 @@
 
 
 int main(){
-<<<<<<< HEAD
-  // printf("%d\n",estprefixe("mot","motisma"));
-  // noeud_t* a = creer_noeud("BONJOUR");
-  // printf("%s\n",a->compteurfils);
-=======
+  char radix[7] = "BONJOUR";
   printf("%d\n",estprefixe("mot","motisma"));
+  //noeud_radix_t* a = creer_noeud_radix(radix);
+  //printf("%s\n",a->radix);
   arbreradix_t a =arbreradix_new();
   inserer_mot_radix(&a,"salut");
   arbreradix_t p=a;
@@ -25,6 +23,5 @@ int main(){
   printf("%d\n",recherche_mot_radix(a,"salutation"));
   printf("Cond dd %d\n",estprefixe("salut","salut"));
   printf("%d\n",recherche_mot_radix(a,"bonjour"));
->>>>>>> 8c32d44b8d42742a0834680de0a964554057ae5c
   return EXIT_SUCCESS;
 }

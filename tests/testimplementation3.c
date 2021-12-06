@@ -27,9 +27,9 @@
 
 int main(){
   liste l = malloc(sizeof(*l));
-  T element;
-  element.mot = "arbre";
-  insere_tete(element, &l);
+
+  char* mot = "arbre";
+  insere_tete(mot, &l);
   if(recherche_mot_dans_liste(l,"abre")){
     printf("le mot est présent dans la liste\n");
   }

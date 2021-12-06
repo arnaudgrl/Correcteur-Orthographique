@@ -138,12 +138,7 @@ void construct_dico_implementation1(char * dico, table_hachage* a){
   }
   else{
     while(fgets(mot,100,dictio)!=NULL){
-      //printf("%s\n", mot );
-
-      T element;
-      element.mot = strdup(mot);
-      //printf("adresse : %d\n", &element);
-      redimensionner(element,a);
+      redimensionner(strdup(mot),a);
     }
   }
 
@@ -153,7 +148,6 @@ void construct_dico_implementation1(char * dico, table_hachage* a){
 void verif_ortho_hachage(table_hachage dico,char * texte){
   char phrase[300];
   char* mot;
-  T element;
   FILE * tex = fopen(texte,"r");
   if(tex==NULL){
     perror("Error opening file \n");
@@ -162,9 +156,7 @@ void verif_ortho_hachage(table_hachage dico,char * texte){
     while(fgets(phrase,300,tex)!=NULL){
       mot=strtok(phrase," : ,. ' \"");
       while(mot!=NULL){
-        element.mot = strdup(mot);
-        //printf("%s\n", mot );
-        if(est_present(element, &dico)==0){
+        if(est_present(strdup(mot), &dico)==0){
           printf("Mal ecrit : %s\n",mot);
         }
         mot=strtok(NULL, ": ,.");
@@ -173,10 +165,6 @@ void verif_ortho_hachage(table_hachage dico,char * texte){
   }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4c2e267ce2c6fbe4b59c3a274d1385e3765af9d5
 void construct_dico_implementation3(char * dico, liste* l){
   char mot[100];
   FILE * dictio;

@@ -21,23 +21,21 @@ typedef struct {
 
 //Fonctions
 
-void element_print(T element);
-
-void insere_tete(T element, liste* pl);
+void insere_tete(char* mot, liste* pl);
 
 void list_print(liste l);
 
-int identiques(T element_1,T element_2);
+int identiques(char* mot1, char* mot2);
 
-int hash(T element, int taille);
+int hash(char* mot, int taille);
 
-int est_present(T element, table_hachage* ht);
+int est_present(char* mot, table_hachage* ht);
 
 table_hachage hashtable_new(unsigned int taille, unsigned int taille_initiale);
 
-void inserer_sans_redimensionner(T element, table_hachage* ht);
+void inserer_sans_redimensionner(char* mot, table_hachage* ht);
 
-void redimensionner(T element, table_hachage* ht);
+void redimensionner(char* mot, table_hachage* ht);
 
 void hashtable_print(table_hachage* ht);
 
