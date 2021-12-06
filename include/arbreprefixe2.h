@@ -15,25 +15,25 @@ typedef struct noeud{
   char* radix;
   int compteurfils;
   struct noeud** alp;//Chaque lettre possède 26 fils(1 fils par lettre possible)
-}noeud_t,*arbreprefixe_t2;
+}noeud_radix_t,*arbreprefixe_t2;
 
 
-noeud_t* creer_noeud(char* c);
-void destruct_noeud(noeud_t* p);
+noeud_radix_t* creer_noeud_radix(char* c);
+void destruct_noeud_radix(noeud_radix_t* p);
 
 
-arbreprefixe_t2 creer_arbre();
-int arbreprefixe_est_vide(arbreprefixe_t2 a);
-void parcours_infixe(arbreprefixe_t2 a,int espace,int n);
-void arbre_delete(arbreprefixe_t2 a);
+arbreradix_t creer_arbre_radix();
+int arbreradix_est_vide(arbreradix_t a);
+void parcours_infixe_radix(arbreradix_t a,int espace,int n);
+void arbre_radix_delete(arbreradix_t a);
 
-int indice_caractere(char c);
-void inserer_lettre(arbreprefixe_t2* a, char c);
-void inserer_phrase(arbreprefixe_t2* a, char* mot);
-void compresser(arbreprefixe_t2);
+int indice_caractere_radix(char c);
+void inserer_lettre_radix(arbreradix_t* a, char c);
+void inserer_phrase_radix(arbreradix_t* a, char* mot);
+void compresser(arbreradix_t);
 
 int estprefixe(char* prefixe,char* mot);
-int recherche_lettre(arbreprefixe_t2 a, char lettre);
-int recherche_mot(arbreprefixe_t2 a, char* mot);
+int recherche_lettre_radix(arbreradix_t a, char lettre);
+int recherche_mot_radix(arbreradix_t a, char* mot);
 
 #endif
