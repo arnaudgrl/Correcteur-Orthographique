@@ -5,16 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "implementation3.h"
 
-typedef struct element {
-  char* mot;
-} T;
-
-typedef struct _cellule {
-  T element;
-  struct _cellule* suivante;
-} cellule;
-typedef cellule* liste;
 
 typedef struct {
   liste* table;
@@ -22,6 +14,7 @@ typedef struct {
   unsigned int nb_elements; /* nombres d'éléments dans la table */
   unsigned int capacite_initiale; /* utile lors du redimensionnement */
 } table_hachage;
+
 
 
 
@@ -48,6 +41,6 @@ void redimensionner(T element, table_hachage* ht);
 
 void hashtable_print(table_hachage* ht);
 
-void free_hashtable(table_hachage* ht);
+void free_hashtable(table_hachage ht);
 
 #endif //IMPLEMENTATION1_H
