@@ -1,4 +1,6 @@
 #include "implementation1.h"
+#include "implementation3.h"
+#include <stdbool.h>
 
 /*
 ================================================================
@@ -14,16 +16,26 @@ void element_print(T element){
   printf("Le mot est : %s\n",element.mot);
 }
 
-void insere_tete(T element, liste* pl){
-  //printf("%s\n",element.mot );
-  liste p=calloc(1,sizeof(*p));
-  if(NULL==p){
-    fprintf(stderr,"Fatal : Unable to allocate new list link.\n");
-  }
-  p->element=element;
-  p->suivante = *pl;
-  *pl=p;
-}
+// void insere_tete(T element, liste* pl){
+//   //printf("%s\n",element.mot );
+//   liste p=calloc(1,sizeof(*p));
+//   if(NULL==p){
+//     fprintf(stderr,"Fatal : Unable to allocate new list link.\n");
+//   }
+//   p->element=element;
+//   p->suivante = *pl;
+//   *pl=p;
+// }
+//
+// void list_delete(liste l){
+//   liste p = l;
+//   while(p != NULL){
+//     l = p->suivante;
+//     free(p);
+//     p=l;
+//   }
+// }
+
 void list_print(liste l){
   if(l!=NULL){
     printf("(");
@@ -149,12 +161,15 @@ void hashtable_print(table_hachage *ht){
   printf("}\n");
 }
 
-void free_hashtable(table_hachage* ht){
+
+
+
+void free_hashtable(table_hachage ht){
   unsigned int i;
-  for ( i = 0; i < ht->capacite; i++) {
-    free(ht->table[i]);
+  for ( i = 0; i < ht.capacite; i++) {
+    list_delete(ht.table[i]);
   }
-  free(ht->table);
+  free(ht.table);
 }
 
 //

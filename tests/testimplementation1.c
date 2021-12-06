@@ -37,7 +37,7 @@ int main(int argc, char **argv){
   // printf("%d\n", identiques(element,element2) );
   //list_print(a.table[7]);
   verif_ortho_hachage(a,texte);
-  //free_hashtable(&a);
+  free_hashtable(a);
   //free(dico);
   //free(texte);
   return EXIT_SUCCESS;

@@ -1,27 +1,27 @@
 #include "arbreprefixe2.h"
 
-noeud_t* creer_noeud(char* radix){
-  noeud_t*p=calloc(1,sizeof(*p));
-  p->compteurfils=0;
-  p->radix=strdup(radix);
-  if(p==NULL){
-    printf("Erreur d'allocation");
-  }
-  return p;
-}
-void destruct_noeud(noeud_t* p){
-
-}
-
-
-int estprefixe(char* prefixe,char* mot){
-  for(int i=0;prefixe[i]!='\0';i++){
-    if(prefixe[i]!=mot[i]){
-      return 0;
-    }
-  }
-  return 1;
-}
+// noeud_t* creer_noeud(char* radix){
+//   noeud_t*p=calloc(1,sizeof(*p));
+//   p->compteurfils=0;
+//   p->radix=strdup(radix);
+//   if(p==NULL){
+//     printf("Erreur d'allocation");
+//   }
+//   return p;
+// }
+// void destruct_noeud(noeud_t* p){
+//
+// }
+//
+//
+// int estprefixe(char* prefixe,char* mot){
+//   for(int i=0;prefixe[i]!='\0';i++){
+//     if(prefixe[i]!=mot[i]){
+//       return 0;
+//     }
+//   }
+//   return 1;
+// }
 
 
 arbreprefixe_t2 creer_arbre();

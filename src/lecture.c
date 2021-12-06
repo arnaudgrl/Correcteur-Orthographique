@@ -1,5 +1,6 @@
 #include "lecture.h"
 #include "arbreprefixe.h"
+#include "implementation3.h"
 
 
 
@@ -125,6 +126,47 @@ void verif_ortho_hachage(table_hachage dico,char * texte){
         element.mot = strdup(mot);
         //printf("%s\n", mot );
         if(est_present(element, &dico)==0){
+          printf("Mal ecrit : %s\n",mot);
+        }
+        mot=strtok(NULL, ": ,.");
+      }
+    }
+  }
+}
+
+
+void construct_dico_implementation3(char * dico, liste* l){
+  char mot[100];
+  FILE * dictio;
+  dictio=fopen(dico,"r");
+  if(dictio==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(mot,100,dictio)!=NULL){
+      //printf("%s\n", mot );
+
+      //printf("adresse : %d\n", &element);
+      insere_tete_liste(strdup(mot),l);
+    }
+  }
+
+  fclose(dictio);
+}
+
+
+void verif_ortho_liste(liste dico,char * texte){
+  char phrase[300];
+  char* mot;
+  FILE * tex = fopen(texte,"r");
+  if(tex==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(phrase,300,tex)!=NULL){
+      mot=strtok(phrase," : ,. ' \"");
+      while(mot!=NULL){
+        if(recherche_mot_dans_liste(dico, strdup(mot)) == false){
           printf("Mal ecrit : %s\n",mot);
         }
         mot=strtok(NULL, ": ,.");
