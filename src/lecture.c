@@ -173,7 +173,10 @@ void verif_ortho_hachage(table_hachage dico,char * texte){
   }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4c2e267ce2c6fbe4b59c3a274d1385e3765af9d5
 void construct_dico_implementation3(char * dico, liste* l){
   char mot[100];
   FILE * dictio;
