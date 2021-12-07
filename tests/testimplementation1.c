@@ -13,13 +13,11 @@ int main(int argc, char **argv){
   dico = "FR.txt";
   texte = "a_la_recherche_du_temps_perdu.txt";
   table_hachage a = hashtable_new(10,10);
-  table_hachage* b = &a;
   printf("%s %s\n",dico,texte);
-
-
   construct_dico_implementation1(dico,&a);
   //hashtable_print(&a);
-  //printf("%d\n", hash("anticonstitutionnellement",655359));
   verif_ortho_hachage(a,texte);
+  free_hashtable(a);
   return EXIT_SUCCESS;
+
 }

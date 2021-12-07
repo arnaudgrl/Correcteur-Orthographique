@@ -23,7 +23,7 @@ hash est la longueur du mot fois l'indice de sa première lettre.
 //   p->suivante = *pl;
 //   *pl=p;
 // }
-//
+// //
 // void list_delete(liste l){
 //   liste p = l;
 //   while(p != NULL){
@@ -59,8 +59,6 @@ int hash(char* mot, int taille){
   //       hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
   //
   // return hash % taille;
-  //printf("%d\n", strlen(element.mot) );
-  //printf("%d\n", taille );
   return (strlen(mot))%taille;
 }
 
@@ -139,7 +137,7 @@ void inserer_sans_redimensionner(char* mot, table_hachage* ht){
   //}
   int h = hash(mot, ht->capacite);
   ht->nb_elements++;
-  insere_tete(mot,&ht->table[h]);
+  insere_tete_liste(mot,&ht->table[h]);
 }
 
 void hashtable_print(table_hachage *ht){

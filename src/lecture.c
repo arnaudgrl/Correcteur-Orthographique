@@ -169,14 +169,16 @@ void construct_dico_implementation3(char * dico, liste* l){
   char mot[100];
   FILE * dictio;
   dictio=fopen(dico,"r");
+  int len;
   if(dictio==NULL){
     perror("Error opening file \n");
   }
   else{
     while(fgets(mot,100,dictio)!=NULL){
-      //printf("%s\n", mot );
-
-      //printf("adresse : %d\n", &element);
+      len=strlen(mot);
+      if(mot[len-1]<32){
+        mot[len-1]=0;
+      }
       insere_tete_liste(strdup(mot),l);
     }
   }
@@ -194,12 +196,12 @@ void verif_ortho_liste(liste dico,char * texte){
   }
   else{
     while(fgets(phrase,300,tex)!=NULL){
-      mot=strtok(phrase," : ,. ' \"");
+      mot=strtok(phrase," : ,. ' \"-!?\';()\n");
       while(mot!=NULL){
-        if(recherche_mot_dans_liste(dico, strdup(mot)) == false){
+        if(recherche_mot_dans_liste(dico, mot) == false){
           printf("Mal ecrit : %s\n",mot);
         }
-        mot=strtok(NULL, ": ,.");
+        mot=strtok(NULL, " : ,. ' \"-!?\';()\n");
       }
     }
   }

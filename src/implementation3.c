@@ -14,25 +14,25 @@ NOTE : NE PAS UTLISER AVEC DES ORDIS LENTS !
 ================================================================
 */
 
-bool recherche_mot_dans_liste(liste l, char* mot){
-  /*
-  l pour liste
-  pl pour pointeur_liste
-  */
-  int indice;
-  liste *pl = malloc(sizeof(*pl));
-  pl=&l;
-  if((*pl)->mot==mot){
-    return true;
-  }
-  while(pl!=NULL){
-    if(mot==(*pl)->mot){
-      free(pl);
+bool recherche_mot_dans_liste(liste l, char* nouv_mot){
+  // if (l==NULL){
+  //   return false;
+  // }
+  // liste p;
+  // for(p = l; p != NULL; p = p->suivante){
+  //   if(strcmp(p->mot, nouv_mot)==0){
+  //     return true;
+  //   }
+  // }
+  // return false;
+
+  liste p=l;
+  while(p->suivante!=NULL){
+    if (strcmp(nouv_mot, p->mot)==0) {
       return true;
     }
-    *pl=(*pl)->suivante;
+    p = p->suivante;
   }
-  free(pl);
   return false;
 }
 
@@ -52,13 +52,10 @@ void list_delete(liste l){
   }
 }
 
-void insere_tete(char* mot, liste* pl){
-  //printf("%s\n",element.mot );
-  liste p=calloc(1,sizeof(*p));
-  if(NULL==p){
-    fprintf(stderr,"Fatal : Unable to allocate new list link.\n");
+
+void affiche(liste l){
+  liste p;
+  for ( p=l; !(p==NULL); p = p->suivante) {
+    printf("%s\n",p->mot);
   }
-  p->mot=mot;
-  p->suivante = *pl;
-  *pl=p;
 }

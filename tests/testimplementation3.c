@@ -7,33 +7,37 @@
 #include "lecture.h"
 #include <assert.h>
 
+
+int main(int argc, char **argv){
+  char * dico;
+  char* texte;
+  dico = "FR.txt";
+  texte = "a_la_recherche_du_temps_perdu.txt";
+  liste l = malloc(sizeof(struct cellule));
+  printf("%s %s\n",dico,texte);
+
+
+  construct_dico_implementation3(dico,&l);
+  //list_print(l);
+
+
+  verif_ortho_liste(l,texte);
+  list_delete(l);
+
+  return EXIT_SUCCESS;
+}
 //
 // int main(int argc, char **argv){
 //   char * dico;
 //   char* texte;
 //   dico = "FR.txt";
 //   texte = "a_la_recherche_du_temps_perdu.txt";
-//   liste_t l = malloc(sizeof(liste_t));
-//   printf("%s %s\n",dico,texte);
-//
-//
-//   construct_dico_implementation3(dico,l);
-//
-//
-//   verif_ortho_liste(l,texte);
-//
-//   return EXIT_SUCCESS;
-// }
-
-int main(){
-  liste l = malloc(sizeof(*l));
-
-  char* mot = "arbre";
-  insere_tete(mot, &l);
-  if(recherche_mot_dans_liste(l,"abre")){
-    printf("le mot est présent dans la liste\n");
-  }
-  list_delete(l);
-  return 0;
-
-}
+//   liste l = malloc(sizeof(struct cellule));
+//   construct_dico_implementation3(dico,&l);
+//   if(recherche_mot_dans_liste(l,"arbre")){
+//     printf("le mot est présent dans la liste\n");
+//   }
+//   //affiche(l);
+//   //list_delete(l);
+//   return 0;
+//}

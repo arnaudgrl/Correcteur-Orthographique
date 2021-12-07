@@ -21,6 +21,8 @@ typedef struct {
 
 //Fonctions
 
+void list_delete(liste l);
+
 void insere_tete(char* mot, liste* pl);
 
 void list_print(liste l);

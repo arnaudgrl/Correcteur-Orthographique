@@ -21,7 +21,7 @@ SRCDIR=./src
 CC=gcc
 
 #Les options du compilateur : compilation (-c) et debug (-g). On peut ajouter -O3 pour optimiser quand le code est juste
-CFLAGS=-c  -g   -I$(INCDIR)
+CFLAGS=-c  -g -I$(INCDIR)
 
 #Les options de l'editeur de liens : -lm pour la bibliothèque mathématique. Voir les Makefile de TP pour ajouter la SDL si besoin
 LDFLAGS=
