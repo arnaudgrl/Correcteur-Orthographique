@@ -83,16 +83,30 @@ void inserer_mot_radix(arbreradix_t* a, char* mot){
   free(lettrestring);
 }
 
+char* concatene(char* pere, char* fils){
+  int sizepere=strlen(pere);
+  int sizefils=strlen(fils);
+  char* interm=strdup(pere);
+  free(pere);
+  pere=calloc(sizepere+sizefils+1,sizeof(char*));
+  pere=strcpy(pere,interm);
+  pere=strcpy(pere+sizepere,fils);
+  pere=pere-sizepere;
+  free(interm);
+  return pere;
+}
+
 void fusion_noeud(arbreradix_t* pere, arbreradix_t* fils){
   arbreradix_t son = *fils;
   arbreradix_t father = *pere;
-  strcat(father->radix,son->radix);
+  father->radix=concatene(father->radix,son->radix);
   father->alp=realloc(father->alp,son->compteurfils*sizeof(*(father->alp)));
   father->compteurfils=son->compteurfils;
   father->estunmot=son->estunmot;
   for(int i=0;i<son->compteurfils;i++){
     father->alp[i]=son->alp[i];
   }
+  free(son->alp);
   destruct_noeud_radix(son);
 }
 

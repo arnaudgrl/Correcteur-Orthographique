@@ -5,16 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "implementation3.h"
 
-typedef struct element {
-  char* mot;
-} T;
-
-typedef struct _cellule {
-  T element;
-  struct _cellule* suivante;
-} cellule;
-typedef cellule* liste;
+typedef char* T;
 
 typedef struct {
   liste* table;
@@ -26,28 +19,31 @@ typedef struct {
 
 
 
+
 //Fonctions
 
-void element_print(T element);
+void list_delete(liste l);
 
-void insere_tete(T element, liste* pl);
+void insere_tete(char* mot, liste* pl);
 
 void list_print(liste l);
 
-int identiques(T element_1,T element_2);
+bool identiques(T mot1, T mot2);
 
-int hash(T element, int taille);
+void insere_tete(T nouveau, liste* pl);
 
-int est_present(T element, table_hachage* ht);
+int hash(char* mot, int taille);
 
-table_hachage hashtable_new(unsigned int taille, unsigned int taille_initiale);
+int est_present(T mot, table_hachage* ht);
 
-void inserer_sans_redimensionner(T element, table_hachage* ht);
+table_hachage hashtable_new(unsigned int capacite,int capacite_initiale);
 
-void redimensionner(T element, table_hachage* ht);
+void inserer_sans_redimensionner(T mot, table_hachage* ht);
+
+void redimensionner(T mot, table_hachage* ht);
 
 void hashtable_print(table_hachage* ht);
 
-void free_hashtable(table_hachage* ht);
+void free_hashtable(table_hachage ht);
 
 #endif //IMPLEMENTATION1_H

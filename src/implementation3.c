@@ -14,30 +14,41 @@ NOTE : NE PAS UTLISER AVEC DES ORDIS LENTS !
 ================================================================
 */
 
-bool recherche_mot_dans_liste(liste l, char* mot){
+bool recherche_mot_dans_liste(liste l, char* nouv_mot){
 
-  /*
-  l pour liste
-  pl pour pointeur_liste
-  */
+  liste p=l;
+  while(p->suivante!=NULL){
+    //printf("%s comparé à %s\n", nouv_mot, p->mot );
 
-  int indice;
-  liste* pl=&l;
-  if(strcmp((*pl)->val,mot)==0){
-    return true;
-  }
-  while(pl!=NULL){
-    if(strcmp(mot,(*pl)->val)==0){
+    if (strcmp(nouv_mot, p->mot)==0) {
+
       return true;
     }
-    *pl=(*pl)->next;
+    p = p->suivante;
   }
   return false;
 }
 
 void insere_tete_liste(char* nouveau_mot, liste* pl) {
-  liste l = malloc(sizeof(struct cellule)); /* allocation de la cellule */
-  l->val = nouveau_mot;
-  l->next = *pl;
+  liste l = malloc(sizeof(*l)); /* allocation de la cellule */
+  l->mot = nouveau_mot;
+  l->suivante = *pl;
   *pl=l;
+}
+
+void list_delete(liste l){
+  liste p = l;
+  while(p != NULL){
+    l = p->suivante;
+    free(p);
+    p=l;
+  }
+}
+
+
+void affiche(liste l){
+  liste p;
+  for ( p=l; !(p==NULL); p = p->suivante) {
+    printf("%s\n",p->mot);
+  }
 }

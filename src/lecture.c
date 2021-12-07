@@ -50,7 +50,7 @@ void construct_dico(char * dico, arbreprefixe_t* a){
       if(mot[len-1]<32){
         mot[len-1]=0;
       }
-      inserer_mot(a,mot);
+      //inserer_mot(a,mot);
       i++;
     }
   }
@@ -119,44 +119,89 @@ void verif_ortho_radix(arbreradix_t dico,char * texte){
 
 
 void construct_dico_implementation1(char * dico, table_hachage* a){
-  char mot[100];
+  int i=0;
+  char mot[30];
+  int len;
   FILE * dictio;
   dictio=fopen(dico,"r");
   if(dictio==NULL){
     perror("Error opening file \n");
   }
   else{
-    while(fgets(mot,100,dictio)!=NULL){
-      //printf("%s\n", mot );
-
-      T element;
-      element.mot = strdup(mot);
-      //printf("adresse : %d\n", &element);
-      redimensionner(element,a);
+    while(fgets(mot,30,dictio)!=NULL){
+      len=strlen(mot);
+      if(mot[len-1]<32){
+        mot[len-1]=0;
+      }
+      //inserer_sans_redimensionner(mot, a);
+      redimensionner(mot,a);
+      i++;
     }
   }
-
   fclose(dictio);
 }
+
 
 void verif_ortho_hachage(table_hachage dico,char * texte){
   char phrase[300];
   char* mot;
-  T element;
   FILE * tex = fopen(texte,"r");
   if(tex==NULL){
     perror("Error opening file \n");
   }
   else{
     while(fgets(phrase,300,tex)!=NULL){
-      mot=strtok(phrase," : ,. ' \"");
+      mot=strtok(phrase," : ,. ' \"-!?\';()\n");
       while(mot!=NULL){
-        element.mot = strdup(mot);
-        //printf("%s\n", mot );
-        if(est_present(element, &dico)==0){
+
+        if(est_present(mot, &dico) == 0)
+        {
+          //list_print(dico.table[hash(mot,dico.capacite)+1]);
           printf("Mal ecrit : %s\n",mot);
         }
-        mot=strtok(NULL, ": ,.");
+        mot=strtok(NULL, " : ,. ' \"-!?\';()\n");
+      }
+    }
+  }
+}
+
+void construct_dico_implementation3(char * dico, liste* l){
+  char mot[100];
+  FILE * dictio;
+  dictio=fopen(dico,"r");
+  int len;
+  if(dictio==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(mot,100,dictio)!=NULL){
+      len=strlen(mot);
+      if(mot[len-1]<32){
+        mot[len-1]=0;
+      }
+      insere_tete_liste(strdup(mot),l);
+    }
+  }
+
+  fclose(dictio);
+}
+
+
+void verif_ortho_liste(liste dico,char * texte){
+  char phrase[300];
+  char* mot;
+  FILE * tex = fopen(texte,"r");
+  if(tex==NULL){
+    perror("Error opening file \n");
+  }
+  else{
+    while(fgets(phrase,300,tex)!=NULL){
+      mot=strtok(phrase," : ,. ' \"-!?\';()\n");
+      while(mot!=NULL){
+        if(recherche_mot_dans_liste(dico, mot) == false){
+          printf("Mal ecrit : %s\n",mot);
+        }
+        mot=strtok(NULL, " : ,. ' \"-!?\';()\n");
       }
     }
   }
