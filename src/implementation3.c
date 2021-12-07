@@ -15,20 +15,13 @@ NOTE : NE PAS UTLISER AVEC DES ORDIS LENTS !
 */
 
 bool recherche_mot_dans_liste(liste l, char* nouv_mot){
-  // if (l==NULL){
-  //   return false;
-  // }
-  // liste p;
-  // for(p = l; p != NULL; p = p->suivante){
-  //   if(strcmp(p->mot, nouv_mot)==0){
-  //     return true;
-  //   }
-  // }
-  // return false;
 
   liste p=l;
   while(p->suivante!=NULL){
+    //printf("%s comparé à %s\n", nouv_mot, p->mot );
+
     if (strcmp(nouv_mot, p->mot)==0) {
+
       return true;
     }
     p = p->suivante;

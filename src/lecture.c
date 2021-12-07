@@ -130,20 +130,28 @@ void verif_ortho_radix(arbreradix_t dico,char * texte){
 
 
 void construct_dico_implementation1(char * dico, table_hachage* a){
-  char mot[100];
+  int i=0;
+  char mot[30];
+  int len;
   FILE * dictio;
   dictio=fopen(dico,"r");
   if(dictio==NULL){
     perror("Error opening file \n");
   }
   else{
-    while(fgets(mot,100,dictio)!=NULL){
-      redimensionner(strdup(mot),a);
+    while(fgets(mot,30,dictio)!=NULL){
+      len=strlen(mot);
+      if(mot[len-1]<32){
+        mot[len-1]=0;
+      }
+      //inserer_sans_redimensionner(mot, a);
+      redimensionner(mot,a);
+      i++;
     }
   }
-
   fclose(dictio);
 }
+
 
 void verif_ortho_hachage(table_hachage dico,char * texte){
   char phrase[300];
@@ -154,12 +162,15 @@ void verif_ortho_hachage(table_hachage dico,char * texte){
   }
   else{
     while(fgets(phrase,300,tex)!=NULL){
-      mot=strtok(phrase," : ,. ' \"");
+      mot=strtok(phrase," : ,. ' \"-!?\';()\n");
       while(mot!=NULL){
-        if(est_present(strdup(mot), &dico)==0){
+
+        if(est_present(mot, &dico) == 0)
+        {
+          //list_print(dico.table[hash(mot,dico.capacite)+1]);
           printf("Mal ecrit : %s\n",mot);
         }
-        mot=strtok(NULL, ": ,.");
+        mot=strtok(NULL, " : ,. ' \"-!?\';()\n");
       }
     }
   }

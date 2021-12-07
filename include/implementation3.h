@@ -9,7 +9,7 @@
 #include <stdbool.h>
 
 struct cellule {
-    char* mot;
+    char mot[30];
     struct cellule* suivante;
 };
 typedef struct cellule* liste;

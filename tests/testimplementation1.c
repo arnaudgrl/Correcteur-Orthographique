@@ -8,16 +8,20 @@
 
 
 int main(int argc, char **argv){
-  char * dico;
   char* texte;
-  dico = "FR.txt";
+  char* dico;
   texte = "a_la_recherche_du_temps_perdu.txt";
-  table_hachage a = hashtable_new(10,10);
-  printf("%s %s\n",dico,texte);
+  dico = "FR.txt";
+  table_hachage a = hashtable_new(200,200);
+  printf("%s\n",texte);
   construct_dico_implementation1(dico,&a);
   //hashtable_print(&a);
   verif_ortho_hachage(a,texte);
   free_hashtable(a);
+  // printf("%d\n", hash("anticonstitutionnellement",a.capacite) );
+  // printf("%d\n", hash("opina",a.capacite) );
+  // printf("%d\n", est_present("anticonstitutionnellement",a));
+
   return EXIT_SUCCESS;
 
 }
