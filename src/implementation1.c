@@ -56,6 +56,7 @@ void insere_tete(T nouv, liste* pl){
   if (*pl == NULL){
     strcpy(p->mot, nouv);
     *pl = p;
+    return;
   }
   strcpy(p->mot, nouv);
   p->suivante = *pl ;

@@ -27,12 +27,12 @@ CFLAGS=-c  -g   -I$(INCDIR)
 LDFLAGS=
 
 #Les executables que l'on veut construire: a la fois ceux des tests et ceux des programmes finaux
-EXEDIR= $(BINDIR)/implementation2 $(BINDIR)/testsarbreprefixe $(BINDIR)/testimplementation1 $(BINDIR)/testarbreradix $(BINDIR)/testimplementation4 $(BINDIR)/verif_ortho
+EXEDIR= $(BINDIR)/implementation2 $(BINDIR)/testsarbreprefixe $(BINDIR)/testimplementation1 $(BINDIR)/testarbreradix $(BINDIR)/testimplementation4 $(BINDIR)/verif_ortho $(BINDIR)/testimplementation3
 
 
 
 #Les fichiers binaire : ajouter les noms des nouveaux fichiers ici
-OBJ= $(OBJDIR)/lecture.o $(OBJDIR)/arbreprefixe.o $(OBJDIR)/implementation1.o $(OBJDIR)/arbreradix.o
+OBJ= $(OBJDIR)/lecture.o $(OBJDIR)/arbreprefixe.o $(OBJDIR)/implementation1.o $(OBJDIR)/arbreradix.o $(OBJDIR)/implementation3.o
 
 #Pour construire tous les executables
 all: $(EXEDIR)
@@ -56,6 +56,9 @@ $(BINDIR)/testarbreradix : $(OBJ) $(OBJDIR)/testarbreradix.o
 $(BINDIR)/testimplementation4 : $(OBJ) $(OBJDIR)/testimplementation4.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 $(BINDIR)/verif_ortho : $(OBJ) $(OBJDIR)/verif_ortho.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+#pour construire le test testimplementation1 qui utilise implementation1.o
+$(BINDIR)/testimplementation3 : $(OBJ) $(OBJDIR)/testimplementation3.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 # pour construire les fichiers binaires .o
 $(OBJDIR)/%.o : $(TESTS)/%.c
