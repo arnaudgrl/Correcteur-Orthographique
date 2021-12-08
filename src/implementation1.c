@@ -7,7 +7,7 @@
                      - Implementation 1 -
 
 Cette première implementation est une table de hachage dont le
-hash est la longueur du mot fois l'indice de sa première lettre.
+hash est fais grace à la fonction de hachage djb2.
 
 ================================================================
 */
