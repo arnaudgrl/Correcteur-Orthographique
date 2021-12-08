@@ -30,7 +30,7 @@ void list_print(liste l);
 
 bool identiques(T mot1, T mot2);
 
-void insere_tete(T nouveau, liste* pl);
+void insere_tete(T nouv, liste* pl);
 
 int hash(char* mot, int taille);
 

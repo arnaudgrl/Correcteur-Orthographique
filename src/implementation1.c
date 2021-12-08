@@ -51,20 +51,13 @@ void list_print(liste l){
 }
 
 
-void insere_tete(T nouveau, liste* pl){
+void insere_tete(T nouv, liste* pl){
   liste p = malloc(sizeof(*p));
-
   if (*pl == NULL){
-    //p -> val = nouveau;
-    strcpy(p -> mot, nouveau);
+    strcpy(p->mot, nouv);
     *pl = p;
-    return;
   }
-  if(p == NULL){
-    fprintf( stderr, "Fatal: Unable to allocate new list link.\n" );
-    exit(EXIT_FAILURE);
-  }
-  strcpy(p -> mot, nouveau);
+  strcpy(p->mot, nouv);
   p->suivante = *pl ;
   *pl = p ;
 }
