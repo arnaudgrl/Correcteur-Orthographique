@@ -28,19 +28,19 @@ void insere_tete(char* mot, liste* pl);
 
 void list_print(liste l);
 
-bool identiques(T mot1, T mot2);
+bool identiques(char* mot1, char* mot2);
 
-void insere_tete(T nouv, liste* pl);
+void insere_tete(char* nouv, liste* pl);
 
 int hash(char* mot, int taille);
 
-int est_present(T mot, table_hachage* ht);
+int est_present(char* mot, table_hachage* ht);
 
 table_hachage hashtable_new(unsigned int capacite,int capacite_initiale);
 
-void inserer_sans_redimensionner(T mot, table_hachage* ht);
+void inserer_sans_redimensionner(char* mot, table_hachage* ht);
 
-void redimensionner(T mot, table_hachage* ht);
+void redimensionner(char* mot, table_hachage* ht);
 
 void hashtable_print(table_hachage* ht);
 

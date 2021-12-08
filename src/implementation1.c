@@ -51,7 +51,7 @@ void list_print(liste l){
 }
 
 
-void insere_tete(T nouv, liste* pl){
+void insere_tete(char* nouv, liste* pl){
   liste p = malloc(sizeof(*p));
   if (*pl == NULL){
     strcpy(p->mot, nouv);
@@ -64,7 +64,7 @@ void insere_tete(T nouv, liste* pl){
 }
 
 
-int hash (T mot, int taille){
+int hash (char* mot, int taille){
   unsigned long hash = 5381;
     int c;
 
@@ -75,14 +75,14 @@ int hash (T mot, int taille){
   return hash;
 }
 
-bool identiques(T mot1, T mot2){
+bool identiques(char* mot1, char* mot2){
   if(strcmp(mot1,mot2)==0){
     return true;
   }
   return false;
 }
 
-int est_present(T mot, table_hachage* ht){
+int est_present(char* mot, table_hachage* ht){
   //printf("%d\n",ht->capacite);
   int hashcode=hash(mot,ht->capacite);
   liste p=ht->table[hashcode];
@@ -111,7 +111,7 @@ table_hachage hashtable_new(unsigned int capacite,int capacite_initiale){
   return ht;
 }
 
-void redimensionner(T mot, table_hachage* ht){
+void redimensionner(char* mot, table_hachage* ht){
   if(3*ht->nb_elements>2*ht->capacite){
     // printf("%d\n",ht->capacite );
     table_hachage nouv = hashtable_new(2*ht->capacite, ht->capacite_initiale);
@@ -130,7 +130,7 @@ void redimensionner(T mot, table_hachage* ht){
 }
 
 
-void inserer_sans_redimensionner(T mot, table_hachage* ht){
+void inserer_sans_redimensionner(char* mot, table_hachage* ht){
   int hashcode = hash(mot,ht->capacite);
   ht->nb_elements++;
   insere_tete(mot,&ht->table[hashcode]);
