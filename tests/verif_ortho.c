@@ -2,8 +2,9 @@
 int main(int argc, char **argv){
   assert(argc==3);
   int entree;
-  char * dico = strdup(argv[0]);
-  char* texte = strdup(argv[1]);
+  int resultat;
+  char * dico = strdup(argv[1]);
+  char* texte = strdup(argv[2]);
   printf("-----------------------------------------------------------\n");
   printf("ENTREZ LE NUMERO DE L'IMPLEMENTATION QUE VOUS VOULEZ TESTER\n");
   printf("1)Verification avec une liste chainée(Très long !)\n");
@@ -19,23 +20,19 @@ int main(int argc, char **argv){
     scanf("%d",&entree);
   }
   if(entree==1){
-    //verif_ortho_liste(char * dico,char* texte);
-    printf("1");
+    verif_ortho_liste(dico, texte);
     return EXIT_SUCCESS;
   }
   if(entree==2){
-    //verif_ortho_hachage(char * dico,char* texte);
-    printf("2");
+    verif_ortho_hachage(dico, texte);
     return EXIT_SUCCESS;
   }
   if(entree==3){
-    //verif_ortho_prefixe(char * dico,char* texte);
-    printf("3");
+    verif_ortho_prefixe(dico, texte);
     return EXIT_SUCCESS;
   }
   if(entree==4){
-    //verif_ortho_radix(char * dico,char* texte);
-    printf("4");
+    verif_ortho_radix(dico, texte);
     return EXIT_SUCCESS;
   }
   return EXIT_SUCCESS;

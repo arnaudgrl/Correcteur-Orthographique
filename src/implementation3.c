@@ -13,28 +13,12 @@ NOTE : NE PAS UTLISER AVEC DES ORDIS LENTS !
 
 ================================================================
 */
-
-bool recherche_mot_dans_liste(liste l, char* nouv_mot){
-
-  liste p=l;
-  while(p->suivante!=NULL){
-    //printf("%s comparé à %s\n", nouv_mot, p->mot );
-
-    if (strcmp(nouv_mot, p->mot)==0) {
-
-      return true;
-    }
-    p = p->suivante;
-  }
-  return false;
+liste list_new(){
+  liste p;
+  p=calloc(1,sizeof(*p));
+  return p;
 }
 
-void insere_tete_liste(char* nouveau_mot, liste* pl) {
-  liste l = malloc(sizeof(*l)); /* allocation de la cellule */
-  strcpy(l->mot, nouveau_mot);
-  l->suivante = *pl;
-  *pl=l;
-}
 
 void list_delete(liste l){
   liste p = l;
@@ -46,9 +30,43 @@ void list_delete(liste l){
 }
 
 
-void affiche(liste l){
-  liste p;
-  for ( p=l; !(p==NULL); p = p->suivante) {
-    printf("%s\n",p->mot);
+void list_print(liste l){
+  if(l!=NULL){
+    printf("(");
+    int i = 0;
+    liste p;
+    for(p=l;p!=NULL;p=p->suivante){
+      printf(" %d", i);
+      printf(" ");
+      printf("%s", p->mot );
+      i++;
+    }
+    printf(")");
+    printf(",");
   }
+}
+
+bool recherche_mot_dans_liste(liste l, char* nouv_mot){
+
+  liste p=l;
+  while(p->suivante!=NULL){
+
+    if (strcmp(nouv_mot, p->mot)==0) {
+      return true;
+    }
+    p = p->suivante;
+  }
+  return false;
+}
+
+void insere_tete(char* nouv, liste* pl){
+  liste p = malloc(sizeof(*p));
+  if (*pl == NULL){
+    strcpy(p->mot, nouv);
+    *pl = p;
+    return;
+  }
+  strcpy(p->mot, nouv);
+  p->suivante = *pl ;
+  *pl = p ;
 }

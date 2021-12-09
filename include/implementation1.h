@@ -22,28 +22,57 @@ typedef struct {
 
 //Fonctions
 
-void list_delete(liste l);
 
-void insere_tete(char* mot, liste* pl);
-
-void list_print(liste l);
-
+/*
+Cette fonction renvoie 1 si deux string sont identiques, 0 sinon
+*/
 bool identiques(char* mot1, char* mot2);
 
-void insere_tete(char* nouv, liste* pl);
-
+/*
+Renvoie le hashcode d'une chaine de caractere mot avec pour borne taille
+*/
 int hash(char* mot, int taille);
 
+/*
+Renvoie une table de hachage de taille initiale capacite initiale et de taille taille qui peut etre change plus tard avec redimensionner()
+*/
+table_hachage hashtable_new(unsigned int capacite,int capacite_initiale);
+/*
+Libere une table de hachage
+*/
+void free_hashtable(table_hachage ht);
+
+/*
+Affiche une table de hachage
+*/
+void hashtable_print(table_hachage ht);
+
+
+
+
+/*
+Renvoie 1 si un mot est present dans une table de hachage,0 sinon
+*/
 int est_present(char* mot, table_hachage* ht);
 
-table_hachage hashtable_new(unsigned int capacite,int capacite_initiale);
-
+/*
+Insere un mot dans une table de hachage en la redimensionnant si necessaire
+*/
 void inserer_sans_redimensionner(char* mot, table_hachage* ht);
-
+/*
+Redimensionne une table de hachage puis insere le mot mot
+*/
 void redimensionner(char* mot, table_hachage* ht);
+/*
+Insere un mot dans une table de hachage en la redimensionnant si necessaire et en verifiant si le mot est present dans la table ou non
+*/
+void inserer_sans_redimensionner_conflits(char* mot, table_hachage* ht);
+/*
+Redimensionne une table de hachage puis insere le mot mot en gerant les conflits
+*/
+void redimensionner_conflits(char* mot, table_hachage* ht);
 
-void hashtable_print(table_hachage* ht);
 
-void free_hashtable(table_hachage ht);
+
 
 #endif //IMPLEMENTATION1_H

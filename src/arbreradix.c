@@ -1,6 +1,13 @@
 #include "arbreradix.h"
 
+/*
+===========================================================================================================================
+                     - Implementation 4 -
 
+Cette quatrieme implementation est un arbre radix construit a partir d'un arbre prefixe optimise en memoire puis compresse
+
+===========================================================================================================================
+*/
 noeud_radix_t* creer_noeud_radix(char* chaine){
   noeud_radix_t*p=calloc(1,sizeof(*p));
   if(p==NULL){
@@ -14,17 +21,18 @@ noeud_radix_t* creer_noeud_radix(char* chaine){
   p->compteurfils=0;
   return p;
 }
+
 void destruct_noeud_radix(noeud_radix_t* noeud){
   free(noeud->radix);
   free(noeud);
 }
 
 
-arbreradix_t arbreradix_new(){
+
+arbreradix_t creer_arbre_radix(){
   arbreradix_t res = creer_noeud_radix("root");
   return res;
 }
-
 
 void arbre_radix_delete(arbreradix_t a){
   if(a!=NULL){
@@ -38,6 +46,7 @@ void arbre_radix_delete(arbreradix_t a){
     return ;
   }
 }
+
 
 void inserer_lettre_radix(arbreradix_t* a, char* c){
   assert(a!=NULL);
@@ -53,6 +62,7 @@ void inserer_lettre_radix(arbreradix_t* a, char* c){
     p->compteurfils++;
   }
 }
+
 void inserer_mot_radix(arbreradix_t* a, char* mot){
   arbreradix_t p=*a;
   int indice;
@@ -83,6 +93,7 @@ void inserer_mot_radix(arbreradix_t* a, char* mot){
   free(lettrestring);
 }
 
+
 char* concatene(char* pere, char* fils){
   int sizepere=strlen(pere);
   int sizefils=strlen(fils);
@@ -112,7 +123,7 @@ void fusion_noeud(arbreradix_t* pere, arbreradix_t* fils){
 
 void compresser(arbreradix_t* arbre){
   arbreradix_t p =*arbre;
-  if(p->compteurfils==1){
+  if(p->compteurfils==1 && p->estunmot==0){
     fusion_noeud(&p,&(p->alp[0]));
   }
 }
@@ -128,6 +139,7 @@ void compresser_arbre(arbreradix_t* arbre){
     }
   }
 }
+
 
 int estprefixe(char* prefixe,char* mot){
   for(int i=0;prefixe[i]!='\0';i++){
@@ -153,7 +165,7 @@ int trouve_prefixe(arbreradix_t arbre, char* mot){
 
 int recherche_mot_radix(arbreradix_t arbre, char* mot){
   int prefixe;
-  if(arbre->alp==NULL && strlen(mot)==0){
+  if(arbre->estunmot==1 && strlen(mot)==0){
     return 1;
   }
   else if(arbre->alp==NULL || strlen(mot)==0){

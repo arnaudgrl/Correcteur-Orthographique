@@ -25,7 +25,7 @@ void destruct_noeud_radix(noeud_radix_t* p);
 /*
 Cette fonction renvoie un arbreradix initialise avec un noeud "root"
 */
-arbreradix_t arbreradix_new();
+arbreradix_t creer_arbre_radix();
 /*
 Test si un arbreradix_t est vide
 */

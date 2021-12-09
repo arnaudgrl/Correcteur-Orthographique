@@ -21,23 +21,8 @@ int main(int argc, char **argv){
   //list_print(l);
 
 
-  verif_ortho_liste(l,texte);
+  verif_ortho_liste(dico,texte);
   list_delete(l);
 
   return EXIT_SUCCESS;
 }
-//
-// int main(int argc, char **argv){
-//   char * dico;
-//   char* texte;
-//   dico = "FR.txt";
-//   texte = "a_la_recherche_du_temps_perdu.txt";
-//   liste l = malloc(sizeof(struct cellule));
-//   construct_dico_implementation3(dico,&l);
-//   if(recherche_mot_dans_liste(l,"arbre")){
-//     printf("le mot est présent dans la liste\n");
-//   }
-//   //affiche(l);
-//   //list_delete(l);
-//   return 0;
-//}

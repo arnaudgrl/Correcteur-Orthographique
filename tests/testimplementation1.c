@@ -16,7 +16,7 @@ int main(int argc, char **argv){
   printf("%s\n",texte);
   construct_dico_implementation1(dico,&a);
   //hashtable_print(&a);
-  verif_ortho_hachage(a,texte);
+  verif_ortho_hachage(dico,texte);
   free_hashtable(a);
   // printf("%d\n", hash("anticonstitutionnellement",a.capacite) );
   // printf("%d\n", hash("opina",a.capacite) );
