@@ -77,7 +77,6 @@ void construct_dico_radix(char * dico, arbreradix_t* a){
       }
       inserer_mot_radix(a,mot);
     }
-    printf("%d\n",recherche_mot_radix(*a,"je"));
     compresser_arbre(a);
   }
   fclose(dictio);

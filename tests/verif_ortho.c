@@ -13,7 +13,6 @@ int main(int argc, char **argv){
   printf("4)Verification avec un arbre radix\n");
   printf("-------------------------------------------------------------\n");
   scanf("%d",&entree);
-  printf("%d\n",entree);
   while(entree>4 || entree <1){
 
     printf("Vous avez entré un mauvais numéro recommencez !");
@@ -21,19 +20,17 @@ int main(int argc, char **argv){
   }
   if(entree==1){
     verif_ortho_liste(dico, texte);
-    return EXIT_SUCCESS;
   }
   if(entree==2){
     verif_ortho_hachage(dico, texte);
-    return EXIT_SUCCESS;
   }
   if(entree==3){
     verif_ortho_prefixe(dico, texte);
-    return EXIT_SUCCESS;
   }
   if(entree==4){
     verif_ortho_radix(dico, texte);
-    return EXIT_SUCCESS;
   }
+  free(dico);
+  free(texte);
   return EXIT_SUCCESS;
 }
