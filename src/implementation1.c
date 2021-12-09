@@ -105,7 +105,7 @@ void redimensionner_conflits(char* mot, table_hachage* ht){
     for(i=0;i<ht->capacite;i++){
       liste p;
       for( p=ht->table[i];p!=NULL;p=p->suivante){
-        inserer_sans_redimensionner(p->mot, &nouv);
+        inserer_sans_redimensionner_conflits(p->mot, &nouv);
       }
     }
     free_hashtable(ht);

@@ -135,7 +135,9 @@ void verif_ortho_liste(char* dico, char* texte){
   char phrase[30000];
   char* mot;
   int compteurmotfaux=0;
+  int printtable;
   liste verif = list_new();
+  table_hachage motfaux = hashtable_new(200,200);
   construct_dico_implementation3(dico, &verif);
   FILE * tex = fopen(texte,"r");
   if(tex==NULL){
@@ -151,12 +153,19 @@ void verif_ortho_liste(char* dico, char* texte){
         if(recherche_mot_dans_liste(verif, mot) == false){
           //printf("Mal ecrit : %s\n",mot);
           compteurmotfaux++;
+          redimensionner_conflits(mot,&motfaux);
         }
         mot=strtok(NULL,separateurs);
       }
     }
   }
   printf("Nombre de mot faux : %d\n",compteurmotfaux);
+  printf("Voulez vous voir la liste des mots faux ? 1 = oui , autre = non");
+  scanf("%d",&printtable);
+  if(printtable==1){
+    hashtable_print(motfaux);
+  }
+  free_hashtable(&motfaux);
   list_delete(verif);
   fclose(tex);
 }
@@ -164,7 +173,9 @@ void verif_ortho_liste(char* dico, char* texte){
 void verif_ortho_hachage(char* dico,char * texte){
   table_hachage verif = hashtable_new(200,200);
   construct_dico_implementation1(dico,&verif);
+  table_hachage motfaux =hashtable_new(200,200);
   int compteurmotfaux=0;
+  int printtable;
   char phrase[30000];
   char* mot;
   FILE * tex = fopen(texte,"r");
@@ -181,6 +192,7 @@ void verif_ortho_hachage(char* dico,char * texte){
         if(est_present(mot, &verif) == 0)
         {
           compteurmotfaux++;
+          redimensionner_conflits(mot,&motfaux);
           //printf("Mal ecrit : %s\n",mot);
         }
         mot=strtok(NULL,separateurs);
@@ -188,6 +200,12 @@ void verif_ortho_hachage(char* dico,char * texte){
     }
   }
   printf("Nombre de mots faux) %d\n",compteurmotfaux);
+  printf("Voulez vous voir la liste des mots faux ? 1 = oui , autre = non");
+  scanf("%d",&printtable);
+  if(printtable==1){
+    hashtable_print(motfaux);
+  }
+  free_hashtable(&motfaux);
   free_hashtable(&verif);
   fclose(tex);
 }
@@ -195,9 +213,11 @@ void verif_ortho_hachage(char* dico,char * texte){
 void verif_ortho_prefixe(char* dico,char * texte){
   arbreprefixe_t verif = creer_arbre_prefixe();
   construct_dico_prefixe(dico,&verif);
+  table_hachage motfaux =hashtable_new(200,200);
   char phrase[30000];
   char* mot;
   int i=0;
+  int printtable;
   int compteurmotfaux=0;
   FILE * tex = fopen(texte,"r");
   if(tex==NULL){
@@ -209,6 +229,7 @@ void verif_ortho_prefixe(char* dico,char * texte){
       while(mot!=NULL){
         if(recherche_mot(verif,mot)==0){
           compteurmotfaux++;
+          redimensionner_conflits(mot,&motfaux);
           //printf("Mal ecrit : %s\n",mot);
         }
         mot=strtok(NULL, separateurs);
@@ -216,16 +237,23 @@ void verif_ortho_prefixe(char* dico,char * texte){
     }
   }
   printf("Nombre de mot faux : %d\n",compteurmotfaux);
+  printf("Voulez vous voir la liste des mots faux ? 1 = oui , autre = non");
+  scanf("%d",&printtable);
+  if(printtable==1){
+    hashtable_print(motfaux);
+  }
+  free_hashtable(&motfaux);
   arbre_prefixe_delete(verif);
   fclose(tex);
 }
 
 void verif_ortho_radix(char* dico,char * texte){
   arbreradix_t verif = creer_arbre_radix();
+  table_hachage motfaux =hashtable_new(200,200);
   char phrase[30000];
   char* mot;
   int compteurmotfaux=0;
-
+  int printtable;
   construct_dico_radix(dico,&verif);
   FILE * tex = fopen(texte,"r");
 
@@ -240,7 +268,7 @@ void verif_ortho_radix(char* dico,char * texte){
       while(mot!=NULL){
         mot=motlower(mot);
         if(recherche_mot_radix(verif,mot)==0){
-
+          redimensionner_conflits(mot,&motfaux);
           //printf("Mal ecrit : %s\n",mot);
           compteurmotfaux++;
         }
@@ -249,6 +277,12 @@ void verif_ortho_radix(char* dico,char * texte){
     }
   }
   printf("Nombre de mot faux : %d\n",compteurmotfaux);
+  printf("Voulez vous voir la liste des mots faux ? 1 = oui , autre = non");
+  scanf("%d",&printtable);
+  if(printtable==1){
+    hashtable_print(motfaux);
+  }
+  free_hashtable(&motfaux);
   arbre_radix_delete(verif);
   fclose(tex);
 }
