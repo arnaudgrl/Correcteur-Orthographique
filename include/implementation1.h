@@ -40,7 +40,7 @@ table_hachage hashtable_new(unsigned int capacite,int capacite_initiale);
 /*
 Libere une table de hachage
 */
-void free_hashtable(table_hachage ht);
+void free_hashtable(table_hachage* ht);
 
 /*
 Affiche une table de hachage

@@ -54,12 +54,12 @@ table_hachage hashtable_new(unsigned int capacite,int capacite_initiale){
   return ht;
 }
 
-void free_hashtable(table_hachage ht){
+void free_hashtable(table_hachage* ht){
   unsigned int i;
-  for ( i = 0; i < ht.capacite; i++) {
-    free(ht.table[i]);
+  for ( i = 0; i < ht->capacite; i++) {
+    list_delete(ht->table[i]);
   }
-  free(ht.table);
+  free(ht->table);
 }
 
 void hashtable_print(table_hachage ht){
@@ -90,7 +90,7 @@ void redimensionner(char* mot, table_hachage* ht){
         inserer_sans_redimensionner(p->mot, &nouv);
       }
     }
-    //free_hashtable(ht);
+    free_hashtable(ht);
     *ht = nouv;
   }
   inserer_sans_redimensionner(mot,ht);
@@ -108,7 +108,7 @@ void redimensionner_conflits(char* mot, table_hachage* ht){
         inserer_sans_redimensionner(p->mot, &nouv);
       }
     }
-    //free_hashtable(ht);
+    free_hashtable(ht);
     *ht = nouv;
   }
   inserer_sans_redimensionner_conflits(mot,ht);

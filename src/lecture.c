@@ -122,7 +122,7 @@ void construct_dico_implementation3(char * dico, liste* l){
       if(mot[len-1]<32){
         mot[len-1]=0;
       }
-      insere_tete(strdup(mot),l);
+      insere_tete(mot,l);
     }
   }
 
@@ -188,7 +188,7 @@ void verif_ortho_hachage(char* dico,char * texte){
     }
   }
   printf("Nombre de mots faux) %d\n",compteurmotfaux);
-  free_hashtable(verif);
+  free_hashtable(&verif);
   fclose(tex);
 }
 

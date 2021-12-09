@@ -13,7 +13,7 @@ int main(int argc, char **argv){
   char* texte;
   dico = "FR.txt";
   texte = "a_la_recherche_du_temps_perdu.txt";
-  liste l = malloc(sizeof(struct cellule));
+  liste l = calloc(1,sizeof(struct cellule));
   printf("%s %s\n",dico,texte);
 
 

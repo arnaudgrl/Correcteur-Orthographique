@@ -60,7 +60,10 @@ bool recherche_mot_dans_liste(liste l, char* nouv_mot){
 }
 
 void insere_tete(char* nouv, liste* pl){
-  liste p = malloc(sizeof(*p));
+  liste p = calloc(1,sizeof(*p));
+  if(NULL==p){
+     fprintf(stderr,"Fatal : Unable to allocate new list link.\n");
+  }
   if (*pl == NULL){
     strcpy(p->mot, nouv);
     *pl = p;
