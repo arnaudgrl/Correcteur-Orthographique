@@ -40,7 +40,27 @@ int est_present(char* mot, table_hachage* ht){
   return 0;
 }
 
-
+void compteur_de_collisions(table_hachage a){
+ unsigned int i =0 ;
+ unsigned int nbr_collisions = 0;
+ unsigned int case_remplie = 0;
+ for ( i = 0; i < a.capacite; i++) {
+   liste p = a.table[i];
+   int cpt = 0 ;
+   while(p != NULL){
+     cpt++;
+     p = p->suivante;
+   }
+   if(cpt>1){
+     nbr_collisions++;
+   }
+   if(cpt==1){
+     case_remplie++;
+   }
+ }
+ printf("nombre de collisions dans la table de hachage : %d \n", nbr_collisions );
+ printf("nombre de case remplie dans la table de hachage : %d \n", case_remplie );
+}
 
 table_hachage hashtable_new(unsigned int capacite,int capacite_initiale){
   table_hachage ht;

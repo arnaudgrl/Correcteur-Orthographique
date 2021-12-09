@@ -187,7 +187,9 @@ void verif_ortho_hachage(char* dico,char * texte){
       }
     }
   }
-  printf("Nombre de mots faux) %d\n",compteurmotfaux);
+  compteur_de_collisions(verif);
+  printf("taille de la table de hachage : %d\n", verif.capacite );
+  printf("Nombre de mots faux: %d\n",compteurmotfaux);
   free_hashtable(&verif);
   fclose(tex);
 }
