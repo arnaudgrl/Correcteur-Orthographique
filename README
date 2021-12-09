@@ -1,0 +1,51 @@
+      Phelma SEOC - PROJET APMAN
+=======================================
+
+Remarque sur le projet :
+
+Nous avons implementé 4 structures permettant réaliser un
+correcteur orthoraphique grace a chacune de ces structures.
+  - une liste chainée ;
+  - une table de hachage ;
+  - un arbre prefixe ;
+  - un arbre radix ;
+Chaque test permet de créer un dictionnaire à l'aide de ces structures
+puis de vérifier l'orthographe d'un texte (ici a_la_recherche_du_temps_perdu.txt).
+
+=======================================
+
+Strcture du projet
+
+  - bin : contient les fichiers executables
+  - include : contient les fichiers d'entete (.h)
+  - obj : contient les fichiers binaires (.o)
+  - src : contient les fichiers sources (.c)
+  - test : contient les fichiers tests
+  - Makefile
+  - README
+
+============== EXECUTION ==============
+
+Après avoir cloner le git dans un de vos dossiers, veuillez créer un dossier bin
+dans le meme dossier que ce README et importer les fichiers a_la_recherche_du_temps_perdu.txt
+et FR.txt disponible sur https://tdinfo.phelma.grenoble-inp.fr/2ASEOCALGO/TP/.
+
+Pour compiler la totalité des programmes : >> make
+
+Pour executer les programmes test contenus dans ce projet écrire dans un terminal :
+
+    >>    ./bin/testimplementation1       | > execute le test pour la table de hachage
+    >>    ./bin/implementation2           | > execute le test pour l'arbre prefixe
+    >>    ./bin/testimplementation3       | > execute le test pour la liste chainée
+    >>    ./bin/testimplementation4       | > execute le test pour l'arbre radix.
+
+
+=======================================
+
+NOTE pour la liste chainée :
+
+Pour que la liste chainée fonctionne correctement (càd que le test ne prenne
+pas un temps extremement long) veuillez reduire le nombre de mots du document
+a_la_recherche_du_temps_perdu.txt (~100 mots).
+
+=======================================
