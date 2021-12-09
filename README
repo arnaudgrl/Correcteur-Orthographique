@@ -26,11 +26,13 @@ Strcture du projet
 
 ============== EXECUTION ==============
 
-Après avoir cloner le git dans un de vos dossiers, veuillez créer un dossier bin
+Après avoir cloné le git dans un de vos dossiers, veuillez créer un dossier bin
 dans le meme dossier que ce README et importer les fichiers a_la_recherche_du_temps_perdu.txt
 et FR.txt disponible sur https://tdinfo.phelma.grenoble-inp.fr/2ASEOCALGO/TP/.
 
 Pour compiler la totalité des programmes : >> make
+
+Si la compilation il faudra ecrire la commande mkdir bin dans le repertoire du projet.
 
 Pour executer les programmes test contenus dans ce projet écrire dans un terminal :
 
