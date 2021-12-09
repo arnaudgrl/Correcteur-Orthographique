@@ -168,7 +168,7 @@ int recherche_mot_radix(arbreradix_t arbre, char* mot){
   if(arbre->estunmot==1 && strlen(mot)==0){
     return 1;
   }
-  else if(arbre->alp==NULL || strlen(mot)==0){
+  if(arbre->alp==NULL || strlen(mot)==0){
     return 0;
   }
   else{

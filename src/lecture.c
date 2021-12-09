@@ -38,8 +38,9 @@ void lecture_fichier(char* src, char * lec){
 
 char* motlower(char* mot){
   for(int i=0;mot[i]!='\0';i++){
-    mot[1]=tolower(mot[i]);
+    mot[i]=tolower(mot[i]);
   }
+  return mot;
 }
 void construct_dico_prefixe(char * dico, arbreprefixe_t* a){
   printf("%s\n",dico);
@@ -237,7 +238,6 @@ void verif_ortho_radix(char* dico,char * texte){
 
       mot=strtok(phrase,separateurs);
       while(mot!=NULL){
-
         mot=motlower(mot);
         if(recherche_mot_radix(verif,mot)==0){
 

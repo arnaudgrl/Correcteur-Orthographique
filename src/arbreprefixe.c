@@ -71,7 +71,6 @@ int indice_caractere(char c){
   char s =tolower(c);
   int res=(int)s-'a';
   if(res>26 || res <0){
-    printf("%c\n",c);
     return -1;
   }
   return res;
