@@ -199,6 +199,7 @@ void verif_ortho_hachage(char* dico,char * texte){
       }
     }
   }
+<<<<<<< HEAD
   printf("Nombre de mots faux) %d\n",compteurmotfaux);
   printf("Voulez vous voir la liste des mots faux ? 1 = oui , autre = non");
   scanf("%d",&printtable);
@@ -206,6 +207,11 @@ void verif_ortho_hachage(char* dico,char * texte){
     hashtable_print(motfaux);
   }
   free_hashtable(&motfaux);
+=======
+  compteur_de_collisions(verif);
+  printf("taille de la table de hachage : %d\n", verif.capacite );
+  printf("Nombre de mots faux: %d\n",compteurmotfaux);
+>>>>>>> 6d13d759f9dc48ef9b4c1dcc4f5ab2afcc08fc92
   free_hashtable(&verif);
   fclose(tex);
 }

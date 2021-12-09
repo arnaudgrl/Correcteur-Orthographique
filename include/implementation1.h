@@ -72,7 +72,10 @@ Redimensionne une table de hachage puis insere le mot mot en gerant les conflits
 */
 void redimensionner_conflits(char* mot, table_hachage* ht);
 
-
+/*
+Compte le nombre de collisions dans une table de hachage
+*/
+void compteur_de_collisions(table_hachage a);
 
 
 #endif //IMPLEMENTATION1_H
